@@ -1,16 +1,577 @@
-## Hi there 👋
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SignalCordon — Defense BD Intelligence</title>
+<meta name="description" content="Type a company name. SignalCordon searches live DoD databases, finds the 3 fastest contract paths, verifies every signal, and delivers ready-to-send outreach within hours.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@300;400;500&family=IBM+Plex+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#07090c;--bg2:#0c0f14;--bg3:#111520;
+  --border:#1a1f2e;--border2:#252d42;
+  --gold:#c8922a;--gold2:#e8b04a;
+  --green:#3a7a4a;--green2:#5aaa6a;--green3:#7acc8a;--gbg:#08120e;
+  --urgent:#c84a2a;
+  --text:#ccd4e4;--t2:#7a8a9a;--t3:#3a4a5a;--t4:#1a2030;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:'IBM Plex Sans',sans-serif;overflow-x:hidden}
+body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(var(--border) 1px,transparent 1px),linear-gradient(90deg,var(--border) 1px,transparent 1px);background-size:64px 64px;opacity:.10;pointer-events:none;z-index:0}
+::selection{background:var(--gold);color:#000}
 
-<!--
-**signalcordon/signalcordon** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
+#nav{position:fixed;top:0;left:0;right:0;height:58px;background:rgba(7,9,12,.97);backdrop-filter:blur(16px);border-bottom:.5px solid var(--border);display:flex;align-items:center;justify-content:space-between;padding:0 2.5rem;z-index:1000}
+.logo{display:flex;align-items:center;gap:10px;cursor:pointer}
+.lmark{width:26px;height:26px;border:.5px solid var(--gold);border-radius:5px;display:grid;place-items:center}
+.lmark::before{content:'';width:10px;height:10px;border-radius:50%;background:var(--gold)}
+.lname{font-family:'Syne',sans-serif;font-size:17px;font-weight:800;color:#f0f4ff;letter-spacing:-.02em}
+.navlinks{display:flex;align-items:center;gap:1.75rem}
+.nl{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--t2);cursor:pointer;letter-spacing:.04em;background:none;border:none;padding:4px 0;transition:color .15s;border-bottom:1.5px solid transparent}
+.nl:hover,.nl.on{color:var(--text);border-bottom-color:var(--gold)}
+.ncta{font-family:'IBM Plex Mono',monospace;font-size:11px;font-weight:500;background:var(--gold);color:#07090c;padding:8px 18px;border-radius:4px;cursor:pointer;border:none;letter-spacing:.05em;transition:all .15s}
+.ncta:hover{background:var(--gold2);transform:translateY(-1px)}
 
-Here are some ideas to get you started:
+.pg{display:none;min-height:100vh;padding:82px 2.5rem 5rem;max-width:1080px;margin:0 auto;position:relative;z-index:1}
+.pg.on{display:block;animation:fi .35s ease}
+@keyframes fi{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
+@keyframes urgepulse{0%,100%{border-color:var(--urgent)}50%{border-color:#e06040}}
 
-- 🔭 I’m currently working on ...
-- 🌱 I’m currently learning ...
-- 👯 I’m looking to collaborate on ...
-- 🤔 I’m looking for help with ...
-- 💬 Ask me about ...
-- 📫 How to reach me: ...
-- 😄 Pronouns: ...
-- ⚡ Fun fact: ...
--->
+.ey{font-family:'IBM Plex Mono',monospace;font-size:9px;color:var(--gold);letter-spacing:.22em;text-transform:uppercase;margin:0 0 .75rem;display:flex;align-items:center;gap:10px}
+.ey::before{content:'//';opacity:.5}
+.ey::after{content:'';flex:1;height:.5px;background:linear-gradient(90deg,var(--border2),transparent);max-width:160px}
+.stitle{font-family:'Syne',sans-serif;font-size:clamp(26px,4.5vw,54px);font-weight:800;color:#f0f4ff;letter-spacing:-.04em;line-height:1.06;margin:0 0 .9rem}
+.ssub{font-size:15px;color:var(--t2);line-height:1.75;max-width:540px;margin:0 0 2.5rem}
+.btn{font-family:'IBM Plex Mono',monospace;font-size:12px;font-weight:500;background:var(--gold);color:#07090c;padding:13px 24px;border-radius:4px;cursor:pointer;border:none;letter-spacing:.05em;transition:all .15s;display:inline-block}
+.btn:hover{background:var(--gold2);transform:translateY(-1px);box-shadow:0 4px 20px rgba(200,146,42,.2)}
+.btng{font-family:'IBM Plex Mono',monospace;font-size:12px;background:transparent;border:.5px solid var(--border2);color:var(--t2);padding:13px 24px;border-radius:4px;cursor:pointer;letter-spacing:.04em;transition:all .15s;display:inline-block}
+.btng:hover{border-color:var(--text);color:var(--text)}
+.tag{font-family:'IBM Plex Mono',monospace;font-size:10px;padding:3px 9px;border-radius:3px;background:rgba(255,255,255,.04);border:.5px solid var(--border);display:inline-block;margin:0 4px 6px 0}
+.tag.g{border-color:rgba(90,170,106,.3);color:var(--green2)}
+.tag.a{border-color:rgba(200,146,42,.3);color:var(--gold)}
+
+.hero{padding:2.5rem 0 3rem;position:relative}
+.hero-line{position:absolute;top:0;left:-2.5rem;right:-2.5rem;height:.5px;background:linear-gradient(90deg,transparent,var(--gold),transparent);opacity:.25}
+.kicker{display:inline-flex;align-items:center;gap:8px;font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--t2);border:.5px solid var(--border);border-radius:20px;padding:4px 14px;margin:0 0 1.5rem}
+.kd{width:6px;height:6px;border-radius:50%;background:var(--green2);animation:pulse 1.5s ease-in-out infinite}
+.hi-row{display:flex;gap:10px;max-width:580px;margin:0 0 1.5rem}
+.hi{flex:1;background:var(--bg2);border:.5px solid var(--border2);border-radius:6px;padding:0 18px;font-family:'IBM Plex Mono',monospace;font-size:13px;color:var(--text);outline:none;transition:all .2s;height:50px}
+.hi:focus{border-color:var(--gold);box-shadow:0 0 0 3px rgba(200,146,42,.08)}
+.hi::placeholder{color:var(--t3)}
+.proofs{display:flex;gap:1.5rem;flex-wrap:wrap;margin:0 0 4rem}
+.pi{font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--t3);display:flex;align-items:center;gap:6px}
+.pck{width:14px;height:14px;border-radius:50%;background:var(--gbg);border:.5px solid var(--green);display:flex;align-items:center;justify-content:center;font-size:8px;color:var(--green2)}
+
+.how-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);border:.5px solid var(--border);border-radius:8px;overflow:hidden;margin:0 0 3rem}
+.hc{background:var(--bg2);padding:1.75rem 1.5rem;transition:background .2s}
+.hc:hover{background:var(--bg3)}
+.hnum{font-family:'IBM Plex Mono',monospace;font-size:9px;color:var(--gold);letter-spacing:.1em;margin:0 0 1rem;opacity:.7}
+.ht{font-family:'Syne',sans-serif;font-size:17px;font-weight:700;color:#f0f4ff;margin:0 0 .6rem}
+.hb{font-size:12px;color:var(--t2);line-height:1.7}
+
+.value-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:0 0 3rem}
+.vcard{background:var(--bg2);border:.5px solid var(--border);border-radius:8px;padding:1.35rem;position:relative;overflow:hidden;transition:border-color .2s;min-height:160px}
+.vcard:hover{border-color:var(--border2)}
+.vcard::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,var(--gold),transparent);opacity:.25}
+.vc-icon{font-family:'IBM Plex Mono',monospace;font-size:9px;color:var(--gold);letter-spacing:.1em;margin:0 0 .6rem;opacity:.8}
+.vc-title{font-family:'Syne',sans-serif;font-size:16px;font-weight:700;color:#f0f4ff;margin:0 0 .5rem}
+.vc-body{font-size:12px;color:var(--t2);line-height:1.65;margin:0}
+
+/* FOUNDER — anonymous */
+.founder{background:var(--bg2);border:.5px solid var(--border);border-radius:10px;padding:1.75rem 2rem;margin:0 0 3rem;position:relative;overflow:hidden}
+.founder::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent);opacity:.25}
+.founder-label{font-family:'IBM Plex Mono',monospace;font-size:9px;color:var(--gold);letter-spacing:.2em;text-transform:uppercase;margin:0 0 .85rem;opacity:.8}
+.founder-pull{font-family:'Syne',sans-serif;font-size:clamp(16px,2.5vw,22px);font-weight:700;color:#f0f4ff;line-height:1.35;margin:0 0 1rem;letter-spacing:-.02em;max-width:720px}
+.founder-pull span{color:var(--gold)}
+.founder-body{font-size:13px;color:var(--t2);line-height:1.75;max-width:680px;margin:0 0 1rem}
+.founder-creds{display:flex;gap:8px;flex-wrap:wrap}
+.founder-cred{font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--t3);border:.5px solid var(--border);border-radius:3px;padding:3px 9px}
+
+.capture{background:var(--bg2);border:.5px solid var(--border);border-radius:8px;padding:1.5rem;margin:0 0 3rem;display:flex;gap:1.5rem;align-items:center;flex-wrap:wrap}
+.cap-body{flex:1;min-width:240px}
+.cap-title{font-family:'Syne',sans-serif;font-size:17px;font-weight:700;color:#f0f4ff;margin:0 0 .3rem;letter-spacing:-.01em}
+.cap-sub{font-size:12px;color:var(--t2);line-height:1.6;margin:0}
+.cap-form{display:flex;gap:8px;flex-shrink:0;min-width:280px}
+.cap-inp{flex:1;background:var(--bg3);border:.5px solid var(--border);border-radius:4px;padding:10px 14px;font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--text);outline:none;transition:border-color .2s}
+.cap-inp:focus{border-color:var(--gold)}
+.cap-inp::placeholder{color:var(--t3)}
+.cap-btn{font-family:'IBM Plex Mono',monospace;font-size:11px;font-weight:500;background:var(--gold);color:#07090c;padding:10px 16px;border-radius:4px;cursor:pointer;border:none;letter-spacing:.04em;white-space:nowrap;transition:background .15s}
+.cap-btn:hover{background:var(--gold2)}
+
+.comp-wrap{overflow-x:auto;margin:0 0 3rem}
+.comp{width:100%;border-collapse:collapse;border:.5px solid var(--border);border-radius:8px;overflow:hidden}
+.comp th{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.06em;text-transform:uppercase;padding:.85rem 1.1rem;text-align:left;border-bottom:.5px solid var(--border);border-right:.5px solid var(--border)}
+.comp th:first-child{color:var(--t3);background:var(--bg3)}
+.comp th.sc{color:var(--gold);background:rgba(200,146,42,.06)}
+.comp th:last-child{color:var(--t2);background:var(--bg3);border-right:none}
+.comp td{font-size:12px;color:var(--t2);padding:.75rem 1.1rem;border-bottom:.5px solid var(--border);border-right:.5px solid var(--border);vertical-align:top;line-height:1.5}
+.comp td:last-child{border-right:none}
+.comp td.sc{color:var(--text);background:rgba(200,146,42,.03)}
+.comp tr:last-child td{border-bottom:none}
+.comp td .y{color:var(--green2)}
+.comp td .n{color:var(--t3)}
+.comp td .p{color:var(--gold)}
+
+.bwrap{background:var(--bg2);border:.5px solid var(--border);border-radius:10px;overflow:hidden;margin:0 0 2rem;position:relative}
+.bwrap::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent);opacity:.4}
+.b-disclaimer{background:rgba(200,146,42,.06);border-bottom:.5px solid var(--border);padding:.5rem 1.5rem;font-family:'IBM Plex Mono',monospace;font-size:9px;color:var(--gold);letter-spacing:.08em;opacity:.8}
+.bhdr{padding:1.35rem 1.5rem;border-bottom:.5px solid var(--border);display:flex;align-items:flex-start;justify-content:space-between;gap:1rem;background:rgba(200,146,42,.02)}
+.bco{font-family:'Syne',sans-serif;font-size:22px;font-weight:800;color:#f0f4ff;letter-spacing:-.03em}
+.bmeta{font-family:'IBM Plex Mono',monospace;font-size:9px;color:var(--t3);margin-top:5px;line-height:1.7}
+.vs{text-align:right;flex-shrink:0}
+.vsn{font-family:'Syne',sans-serif;font-size:26px;font-weight:800;color:var(--green2);line-height:1;letter-spacing:-.03em}
+.vsl{font-family:'IBM Plex Mono',monospace;font-size:8px;color:var(--green2);background:var(--gbg);border:.5px solid rgba(90,170,106,.3);padding:2px 7px;border-radius:3px;display:inline-block;margin-top:3px}
+.trow{padding:.85rem 1.5rem;border-bottom:.5px solid var(--border);display:flex;flex-wrap:wrap;gap:4px}
+.sigs{padding:.85rem 1.5rem;border-bottom:.5px solid var(--border)}
+.shot{background:rgba(200,74,42,.06);border:.5px solid rgba(200,74,42,.3);border-radius:5px;padding:.65rem .9rem;margin:0 0 .6rem}
+.slbl{font-family:'IBM Plex Mono',monospace;font-size:9px;color:var(--urgent);letter-spacing:.1em;margin:0 0 4px}
+.stxt{font-size:11px;color:#c07060;line-height:1.55}
+.srow{display:flex;gap:8px;padding:.32rem 0;border-bottom:.5px solid var(--border)}
+.srow:last-child{border-bottom:none}
+.snum{font-family:'IBM Plex Mono',monospace;font-size:9px;color:var(--t3);min-width:20px;margin-top:2px}
+.stx{font-size:11px;color:var(--t2);line-height:1.5}
+.stx strong{color:var(--text)}
+.pths{padding:.85rem 1.5rem}
+.plbl{font-family:'IBM Plex Mono',monospace;font-size:9px;color:var(--gold);letter-spacing:.16em;margin:0 0 .75rem;opacity:.8}
+.pc{background:rgba(255,255,255,.02);border:.5px solid var(--border);border-radius:6px;padding:.9rem 1rem;margin:0 0 .65rem;transition:all .2s}
+.pc:hover{border-color:var(--border2)}
+.pc.urg{animation:urgepulse 2.5s ease-in-out infinite}
+.ubdg{display:inline-flex;align-items:center;gap:5px;background:rgba(200,74,42,.1);border:.5px solid rgba(200,74,42,.4);border-radius:3px;padding:2px 8px;font-family:'IBM Plex Mono',monospace;font-size:9px;color:var(--urgent);margin:0 0 .55rem;letter-spacing:.05em}
+.blinkdot{animation:pulse 1.1s ease-in-out infinite}
+.phd{display:flex;justify-content:space-between;align-items:flex-start;gap:10px;margin:0 0 .45rem}
+.pnum{font-family:'IBM Plex Mono',monospace;font-size:9px;color:var(--gold);margin:0 0 3px;opacity:.7;letter-spacing:.06em}
+.pname{font-family:'Syne',sans-serif;font-size:13px;font-weight:700;color:#f0f4ff;line-height:1.2}
+.psc{font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--green2);text-align:right;flex-shrink:0}
+.sbar{width:48px;height:2px;background:var(--border);border-radius:1px;margin:.3rem 0 0 auto;overflow:hidden}
+.sbf{height:100%;border-radius:1px}
+.pdet{display:grid;grid-template-columns:1fr 1fr;gap:.35rem .85rem;margin:.5rem 0}
+.dl{font-family:'IBM Plex Mono',monospace;font-size:9px;color:var(--t3);text-transform:uppercase;letter-spacing:.06em}
+.dv{font-size:11px;color:var(--text);margin:1px 0 0;line-height:1.4}
+.pitch{background:var(--gbg);border-left:2px solid var(--green);padding:.55rem .8rem;border-radius:0 4px 4px 0;font-size:11px;color:var(--green3);font-style:italic;line-height:1.7;margin:.5rem 0}
+.conf{display:inline-flex;align-items:center;gap:4px;font-family:'IBM Plex Mono',monospace;font-size:9px;padding:2px 7px;border-radius:3px;margin-top:.35rem}
+.conf.hi{background:rgba(90,170,106,.08);border:.5px solid rgba(90,170,106,.3);color:var(--green2)}
+.conf.md{background:rgba(200,146,42,.08);border:.5px solid rgba(200,146,42,.3);color:var(--gold)}
+.monbox{margin:.85rem 1.5rem;background:var(--gbg);border:.5px solid rgba(90,170,106,.2);border-radius:6px;padding:.8rem 1rem}
+.monlbl{font-family:'IBM Plex Mono',monospace;font-size:9px;color:var(--green2);letter-spacing:.14em;text-transform:uppercase;margin:0 0 .35rem;opacity:.8}
+.montxt{font-size:12px;color:var(--green3);line-height:1.7}
+.bftr{padding:.75rem 1.5rem;border-top:.5px solid var(--border);display:flex;justify-content:space-between;align-items:center}
+.vbdg{font-family:'IBM Plex Mono',monospace;font-size:9px;color:var(--green2);background:var(--gbg);border:.5px solid rgba(90,170,106,.3);padding:3px 9px;border-radius:3px}
+
+.pgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:0 0 2rem}
+.pcrd{background:var(--bg2);border:.5px solid var(--border);border-radius:10px;padding:1.4rem;position:relative;overflow:hidden;transition:border-color .2s;display:flex;flex-direction:column}
+.pcrd:hover{border-color:var(--border2)}
+.pcrd.feat{border-color:rgba(200,146,42,.4)}
+.pcrd.feat::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent)}
+.pbdg{font-family:'IBM Plex Mono',monospace;font-size:9px;font-weight:500;padding:2px 8px;border-radius:3px;display:inline-block;margin:0 0 .7rem;letter-spacing:.05em}
+.pnm{font-family:'Syne',sans-serif;font-size:19px;font-weight:800;color:#f0f4ff;margin:0 0 .3rem;letter-spacing:-.02em}
+.pamt{font-family:'Syne',sans-serif;font-size:32px;font-weight:800;color:#f0f4ff;letter-spacing:-.03em;margin:0 0 .1rem;line-height:1}
+.pper{font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--t3);margin:0 0 .9rem}
+.pdesc{font-size:12px;color:var(--t2);line-height:1.6;margin:0 0 .9rem;padding-bottom:.9rem;border-bottom:.5px solid var(--border)}
+.pfeats{list-style:none;display:flex;flex-direction:column;gap:6px;margin:0 0 1.3rem;flex:1}
+.pfeats li{font-size:11px;color:var(--t2);display:flex;align-items:flex-start;gap:6px;line-height:1.45}
+.fck{width:13px;height:13px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:8px;flex-shrink:0;margin-top:1px}
+.fck.y{background:rgba(90,170,106,.1);border:.5px solid rgba(90,170,106,.3);color:var(--green2)}
+.pbtn{width:100%;padding:11px;border-radius:4px;font-family:'IBM Plex Mono',monospace;font-size:11px;font-weight:500;letter-spacing:.05em;cursor:pointer;border:.5px solid var(--border2);background:transparent;color:var(--text);transition:all .15s;margin-top:auto}
+.pbtn:hover{background:var(--bg3);border-color:var(--text)}
+.pcrd.feat .pbtn{background:var(--gold);color:#07090c;border-color:transparent}
+.pcrd.feat .pbtn:hover{background:var(--gold2)}
+
+.faq{margin:0 0 2rem}
+.faq-item{border-bottom:.5px solid var(--border)}
+.faq-item:first-child{border-top:.5px solid var(--border)}
+.faq-q{font-size:13px;font-weight:500;color:#f0f4ff;padding:1rem 0;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:1rem;user-select:none}
+.faq-q:hover{color:var(--gold)}
+.faq-icon{font-family:'IBM Plex Mono',monospace;font-size:14px;color:var(--gold);flex-shrink:0;transition:transform .2s}
+.faq-item.open .faq-icon{transform:rotate(45deg)}
+.faq-a{font-size:12px;color:var(--t2);line-height:1.7;padding:0 0 1rem;display:none}
+.faq-item.open .faq-a{display:block}
+
+.ent{background:var(--bg2);border:.5px solid var(--border);border-radius:8px;padding:1.5rem;margin:0 0 2rem;display:flex;gap:2rem;align-items:center;flex-wrap:wrap}
+.ent-body{flex:1;min-width:240px}
+.ent-title{font-family:'Syne',sans-serif;font-size:17px;font-weight:700;color:#f0f4ff;margin:0 0 .35rem;letter-spacing:-.01em}
+.ent-sub{font-size:12px;color:var(--t2);line-height:1.65;margin:0}
+
+.cwrap{display:grid;grid-template-columns:1.1fr 1fr;gap:2.5rem;align-items:start}
+.cform{background:var(--bg2);border:.5px solid var(--border);border-radius:10px;padding:1.75rem;position:relative;overflow:hidden}
+.cform::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent);opacity:.3}
+.fg{margin:0 0 1rem}
+.fl{font-family:'IBM Plex Mono',monospace;font-size:9px;color:var(--t3);text-transform:uppercase;letter-spacing:.12em;display:block;margin:0 0 .45rem}
+.fi{width:100%;background:var(--bg3);border:.5px solid var(--border);border-radius:4px;padding:10px 14px;font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--text);outline:none;transition:all .2s}
+.fi:focus{border-color:var(--gold);box-shadow:0 0 0 3px rgba(200,146,42,.06)}
+.fi::placeholder{color:var(--t4)}
+select.fi{cursor:pointer}
+textarea.fi{resize:vertical;min-height:90px;line-height:1.6}
+.ci{display:flex;gap:10px;margin:0 0 .9rem;align-items:flex-start}
+.ci-ico{width:34px;height:34px;border:.5px solid var(--border);border-radius:6px;display:flex;align-items:center;justify-content:center;flex-shrink:0;background:var(--bg2)}
+.ci-t{font-size:12px;font-weight:500;color:var(--text);margin:0 0 2px}
+.ci-v{font-size:11px;color:var(--t2);line-height:1.4}
+.ind-tags{display:flex;flex-wrap:wrap;gap:4px;margin-top:.5rem}
+
+@media(max-width:768px){
+  #nav{padding:0 1.25rem}
+  .navlinks{gap:1rem}
+  .nl{font-size:10px}
+  .ncta{padding:7px 12px;font-size:10px}
+  .pg{padding:80px 1.25rem 4rem}
+  .hi-row{flex-direction:column}
+  .hi{height:44px}
+  .how-grid,.value-grid,.pgrid,.cwrap{grid-template-columns:1fr}
+  .comp td,.comp th{padding:.6rem .75rem;font-size:11px}
+  .cap-form{flex-direction:column;min-width:unset;width:100%}
+  .ent{flex-direction:column}
+  .pdet{grid-template-columns:1fr}
+  .proofs{gap:1rem}
+  .founder-creds{gap:5px}
+}
+
+footer{border-top:.5px solid var(--border);padding:2rem 2.5rem;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem;max-width:1080px;margin:0 auto;position:relative;z-index:1}
+.ft{font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--t3);line-height:1.7}
+</style>
+</head>
+<body>
+
+<div id="nav">
+  <div class="logo" onclick="go('home')">
+    <div class="lmark"></div>
+    <span class="lname">SignalCordon</span>
+  </div>
+  <div class="navlinks">
+    <button class="nl" id="n-how" onclick="go('how')">How it works</button>
+    <button class="nl" id="n-brief" onclick="go('brief')">Sample brief</button>
+    <button class="nl" id="n-pricing" onclick="go('pricing')">Pricing</button>
+    <button class="ncta" onclick="go('contact')">Get a brief →</button>
+  </div>
+</div>
+
+<!-- HOME -->
+<div id="pg-home" class="pg on">
+  <div class="hero">
+    <div class="hero-line"></div>
+    <div class="kicker"><div class="kd"></div>Live database search · Verified signals · No clearance required</div>
+    <h1 class="stitle">Your fastest path<br>to a <span style="color:var(--gold)">DoD contract.</span></h1>
+    <p class="ssub">Type a company name. SignalCordon searches live DoD databases, finds the 3 fastest contract paths, verifies every signal, and delivers the exact words to send — within hours.</p>
+    <div class="hi-row">
+      <input class="hi" id="hero-inp" placeholder="Enter a company or technology name..." onkeydown="if(event.key==='Enter')go('contact')">
+      <button class="btn" onclick="go('contact')">Get brief →</button>
+    </div>
+    <div class="proofs">
+      <div class="pi"><span class="pck">✓</span>SAM.gov · SBIR · DIU · NDAA — live</div>
+      <div class="pi"><span class="pck">✓</span>Every signal verified before delivery</div>
+      <div class="pi"><span class="pck">✓</span>3 outreach messages included</div>
+      <div class="pi"><span class="pck">✓</span>No clearance required</div>
+    </div>
+  </div>
+
+  <div class="ey">How it works</div>
+  <div class="how-grid" style="margin:0 0 1rem">
+    <div class="hc"><div class="hnum">01 // Input</div><div class="ht">Just the company name</div><div class="hb">No description required. We research the company from public sources — website, SBIR history, SAM.gov records, and funding announcements.</div></div>
+    <div class="hc"><div class="hnum">02 // Search</div><div class="ht">Six live databases</div><div class="hb">SAM.gov, SBIR.gov, DIU, NDAA budget lines, executive orders, and prime award histories — simultaneously. Every claim verified before delivery.</div></div>
+    <div class="hc"><div class="hnum">03 // Deliver</div><div class="ht">Brief + outreach within hours</div><div class="hb">3 ranked paths, confidence scores, program offices, warm hooks, and 3 ready-to-send outreach messages. Everything included.</div></div>
+  </div>
+  <div style="margin:0 0 3.5rem;text-align:right"><button class="btng" style="font-size:11px;padding:9px 16px" onclick="go('how')">Full explanation →</button></div>
+
+  <div class="ey">Why it works</div>
+  <div class="value-grid">
+    <div class="vcard"><div class="vc-icon">// Intelligence</div><div class="vc-title">Specific, not generic</div><div class="vc-body">Every brief references named solicitation numbers, specific program offices, and dollar amounts. Not a summary of what DoD does — a map of where your company fits right now.</div></div>
+    <div class="vcard"><div class="vc-icon">// Verification</div><div class="vc-title">Every claim checked</div><div class="vc-body">A second AI agent independently checks every dollar figure, solicitation number, and program office name against live databases. Briefs below 70% confidence are held for review.</div></div>
+    <div class="vcard"><div class="vc-icon">// Outreach</div><div class="vc-title">Ready to send Monday morning</div><div class="vc-body">Three outreach messages — one per contract path — with the warm hook named in sentence one and the specific value in sentence two. No generic BD language.</div></div>
+    <div class="vcard"><div class="vc-icon">// Access</div><div class="vc-title">Built for companies without a BD team</div><div class="vc-body">Defense BD consultants charge $15,000–$25,000 per month and take weeks to produce what SignalCordon delivers within hours. This is the on-ramp for companies with real technology and no BD infrastructure.</div></div>
+  </div>
+
+  <div class="ey">Who built this</div>
+  <div class="founder">
+    <div class="founder-label">// Founder</div>
+    <div class="founder-pull">SignalCordon was built by someone who noticed that companies with <span>genuine dual-use technology</span> were losing to companies with better BD networks — not better products.</div>
+    <div class="founder-body">The intelligence gap between a well-funded startup with no government relationships and an established defense contractor is a process problem, not a capability problem. The DoD procurement system is not designed to be navigated without institutional knowledge — but the signals are all public. Every solicitation, every budget line, every program office contact is available if you know where to look and how to connect it to a specific company's capability. SignalCordon is the system that does that connecting — automatically, verifiably, and without requiring a clearance or a defense insider on your team.</div>
+    <div class="founder-creds">
+      <span class="founder-cred">UC Berkeley</span>
+      <span class="founder-cred">Defense BD Intelligence</span>
+      <span class="founder-cred">Founded 2026</span>
+    </div>
+  </div>
+
+  <div class="capture">
+    <div class="cap-body">
+      <div class="cap-title">Signal of the Week</div>
+      <div class="cap-sub">One specific DoD finding every Monday — a solicitation closing, a program office signal, or a procurement gap. No pitch. Just intelligence.</div>
+    </div>
+    <div class="cap-form">
+      <input class="cap-inp" type="email" placeholder="your@email.com" id="cap-email">
+      <button class="cap-btn" onclick="capsubm()">Subscribe</button>
+    </div>
+  </div>
+
+  <div style="display:flex;gap:12px"><button class="btn" onclick="go('brief')">See sample brief →</button><button class="btng" onclick="go('pricing')">View pricing</button></div>
+</div>
+
+<!-- HOW IT WORKS -->
+<div id="pg-how" class="pg">
+  <div class="ey">How it works</div>
+  <h2 class="stitle">Intelligence in 3 steps</h2>
+  <p class="ssub">Type a company name. Three AI agents research, verify, and write. Your involvement: approve and send.</p>
+
+  <div class="how-grid" style="margin:0 0 3.5rem">
+    <div class="hc"><div class="hnum">01 // Input</div><div class="ht">Type a company name</div><div class="hb">That is the only input required. No description, no questionnaire, no intake form. SignalCordon identifies the company's technology, market, and DoD relevance entirely from public sources — website, SBIR awards, SAM.gov registration, news, and funding announcements.</div></div>
+    <div class="hc"><div class="hnum">02 // Research</div><div class="ht">Six databases simultaneously</div><div class="hb">SAM.gov open solicitations, SBIR.gov topics, DIU program announcements, NDAA budget language, executive orders, and prime contractor award histories. Every specific claim verified against live databases before the brief ships.</div></div>
+    <div class="hc"><div class="hnum">03 // Deliver</div><div class="ht">Verified brief within hours</div><div class="hb">Three ranked contract paths with confidence scores per signal. Specific program offices, primes to approach, warm hooks, and three outreach messages. All included in every paid tier.</div></div>
+  </div>
+
+  <div class="ey">Three agents. One pipeline.</div>
+  <h3 style="font-family:'Syne',sans-serif;font-size:20px;font-weight:700;color:#f0f4ff;margin:0 0 .5rem;letter-spacing:-.02em">Automated research. Your decision to send.</h3>
+  <p style="font-size:13px;color:var(--t2);line-height:1.7;margin:0 0 1.75rem;max-width:560px">The Analyst researches the company and finds contract paths. The Verifier independently checks every specific claim against live databases. The Operator writes three outreach messages. Nothing ships below 70% confidence.</p>
+
+  <div style="background:var(--bg2);border:.5px solid var(--border);border-radius:8px;padding:1.25rem 1.5rem;margin:0 0 3.5rem">
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);border-radius:4px;overflow:hidden">
+      <div style="background:var(--bg3);padding:.85rem 1rem;border-top:2px solid var(--green)"><div style="font-family:'IBM Plex Mono',monospace;font-size:9px;color:var(--green2);margin:0 0 4px;letter-spacing:.06em">ANALYST</div><div style="font-size:11px;color:var(--t2);line-height:1.55">Researches the company. Finds 3 contract paths. Returns structured brief with signals, program offices, warm hooks, and pitches.</div></div>
+      <div style="background:var(--bg3);padding:.85rem 1rem;border-top:2px solid var(--green)"><div style="font-family:'IBM Plex Mono',monospace;font-size:9px;color:var(--green2);margin:0 0 4px;letter-spacing:.06em">VERIFIER</div><div style="font-size:11px;color:var(--t2);line-height:1.55">Independently checks every dollar figure, solicitation number, and program office. Returns a confidence score per signal.</div></div>
+      <div style="background:var(--bg3);padding:.85rem 1rem;border-top:2px solid var(--gold)"><div style="font-family:'IBM Plex Mono',monospace;font-size:9px;color:var(--gold);margin:0 0 4px;letter-spacing:.06em">OPERATOR</div><div style="font-size:11px;color:var(--t2);line-height:1.55">Writes 3 outreach emails from the verified brief. Warm hook in sentence one. Specific value in sentence two.</div></div>
+    </div>
+  </div>
+
+  <div class="ey">How we compare</div>
+  <h3 style="font-family:'Syne',sans-serif;font-size:20px;font-weight:700;color:#f0f4ff;margin:0 0 1.25rem;letter-spacing:-.02em">SignalCordon vs. the alternatives</h3>
+  <div class="comp-wrap">
+    <table class="comp">
+      <thead>
+        <tr>
+          <th></th>
+          <th class="sc">SignalCordon</th>
+          <th>BD Consultant</th>
+          <th>DIY Research</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>Delivery time</td><td class="sc"><span class="y">Within hours</span></td><td>2–4 weeks</td><td>Days to weeks</td></tr>
+        <tr><td>Cost</td><td class="sc"><span class="y">$750 per brief</span></td><td>$15,000–$25,000/month</td><td>Staff time only</td></tr>
+        <tr><td>Live database search</td><td class="sc"><span class="y">✓ SAM · SBIR · DIU · NDAA</span></td><td><span class="p">Varies by firm</span></td><td><span class="p">Manual, time-intensive</span></td></tr>
+        <tr><td>Signal verification</td><td class="sc"><span class="y">✓ Independent verification</span></td><td><span class="p">Varies by firm</span></td><td><span class="n">Rarely done</span></td></tr>
+        <tr><td>Outreach messages included</td><td class="sc"><span class="y">✓ 3 per brief, always</span></td><td><span class="p">Sometimes, extra cost</span></td><td><span class="n">You write them</span></td></tr>
+        <tr><td>Requires DoD knowledge</td><td class="sc"><span class="y">✓ None required</span></td><td><span class="y">None required</span></td><td><span class="n">Significant knowledge needed</span></td></tr>
+        <tr><td>Scales with your pipeline</td><td class="sc"><span class="y">✓ One name at a time</span></td><td><span class="n">Retainer limits scope</span></td><td><span class="n">Linear with staff time</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div style="display:flex;gap:12px"><button class="btn" onclick="go('brief')">See a real brief →</button><button class="btng" onclick="go('contact')">Get your brief</button></div>
+</div>
+
+<!-- SAMPLE BRIEF -->
+<div id="pg-brief" class="pg">
+  <div class="ey">Sample brief</div>
+  <h2 class="stitle">What you actually receive</h2>
+  <p class="ssub">This is a representative SignalCordon brief showing the format, depth, and structure of every verified output. All company details shown are illustrative.</p>
+  <div class="bwrap">
+    <div class="b-disclaimer">// ILLUSTRATIVE SAMPLE — Company details are representative, not from an actual client brief</div>
+    <div class="bhdr">
+      <div>
+        <div style="font-family:'IBM Plex Mono',monospace;font-size:9px;color:var(--gold);letter-spacing:.16em;margin:0 0 .4rem;opacity:.8">SIGNALCORDON // LIVE INTELLIGENCE BRIEF // UNCLASSIFIED</div>
+        <div class="bco">AUTONOMOUS LOGISTICS CO.</div>
+        <div class="bmeta">SC-SAMPLE-001 // 3 contract paths // Illustrative output<br>Autonomous UAS delivery platform · Phase II awardee · United States</div>
+      </div>
+      <div class="vs"><div style="font-family:'IBM Plex Mono',monospace;font-size:9px;color:var(--t3);margin:0 0 2px;opacity:.7">Verifier score</div><div class="vsn">91%</div><div class="vsl">// verified</div></div>
+    </div>
+    <div class="trow"><span class="tag">autonomous UAS</span><span class="tag">logistics delivery</span><span class="tag">medical resupply</span><span class="tag g">Phase II awardee</span><span class="tag a">TRL 7 — field validated</span></div>
+    <div class="sigs">
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:9px;color:var(--t3);text-transform:uppercase;letter-spacing:.1em;margin:0 0 .6rem;opacity:.7">Live signals — 5 confirmed</div>
+      <div class="shot"><div class="slbl">// HOTTEST SIGNAL — ACTIVE SBIR TOPIC // CLOSES IN 40 DAYS</div><div class="stxt">Active DoD SBIR topic requiring autonomous field delivery of medical supplies in contested environments. Company's existing past performance in prehospital autonomous delivery is the only dual-use match in the current defense market. Confirmed on SBIR.gov. Deadline imminent.</div></div>
+      <div class="srow"><span class="snum">S2</span><span class="stx"><strong>FY2026 Army resupply program — $19M allocated:</strong> Group 3 UAS, autonomous medical delivery, 8-mile contested-environment range. Past performance is a direct TRL match. Confirmed on DoD FY2026 budget justification.</span></div>
+      <div class="srow"><span class="snum">S3</span><span class="stx"><strong>Naval air systems Sources Sought — active:</strong> Successor program to a failed incumbent airframe. Both incumbents failed demonstration tasks. Window is open. Program office has published active Sources Sought.</span></div>
+      <div class="srow"><span class="snum">S4</span><span class="stx"><strong>Existing program office relationship — warm path:</strong> Prior contracting relationship is the fastest route to program office introductions. One call replaces months of cold outreach.</span></div>
+      <div class="srow"><span class="snum">S5</span><span class="stx"><strong>Rapid contracting vehicle confirmed:</strong> SBIR rapid award vehicle available for companies with demonstrated past performance. Existing award history qualifies for accelerated timeline.</span></div>
+    </div>
+    <div class="pths">
+      <div class="plbl">TOP 3 CONTRACT PATHS — RANKED BY SCORE</div>
+      <div class="pc urg" style="border-color:rgba(200,74,42,.4)">
+        <div class="ubdg"><span class="blinkdot">●</span>ACTIVE SBIR TOPIC — CLOSES IN 40 DAYS</div>
+        <div class="phd"><div><div class="pnum">PATH 1 — MOST URGENT</div><div class="pname">DoD SBIR — Autonomous Medical Field Delivery</div></div><div><div class="psc">9/10</div><div class="sbar"><div class="sbf" style="width:90%;background:linear-gradient(90deg,#1a4a1a,var(--green2))"></div></div></div></div>
+        <div class="pdet"><div><div class="dl">Program office</div><div class="dv">DoD Biological Technologies Office</div></div><div><div class="dl">Vehicle</div><div class="dv">SBIR Phase I — direct application</div></div><div><div class="dl">Prime to approach</div><div class="dv">Program manager — direct submission</div></div><div><div class="dl">Timeline</div><div class="dv" style="color:var(--urgent)">6 months if submitted before deadline</div></div></div>
+        <div class="pitch">"Our autonomous delivery platform and prehospital past performance directly match the requirements of this open SBIR topic — we are the only dual-use airframe in this space with validated delivery at TRL 7, and I would welcome a pre-submission conversation with the program manager before the deadline closes."</div>
+        <div class="conf hi">// verified — topic confirmed on SBIR.gov</div>
+      </div>
+      <div class="pc">
+        <div class="phd"><div><div class="pnum">PATH 2 — HIGHEST VALUE NEAR-TERM</div><div class="pname">Army Autonomous Medical Resupply Program</div></div><div><div class="psc">9/10</div><div class="sbar"><div class="sbf" style="width:90%;background:linear-gradient(90deg,#1a4a1a,var(--green2))"></div></div></div></div>
+        <div class="pdet"><div><div class="dl">Program office</div><div class="dv">Army Aviation & Missile Command</div></div><div><div class="dl">Vehicle</div><div class="dv">SBIR rapid award vehicle</div></div><div><div class="dl">Prime to approach</div><div class="dv">Prime logistics integrator</div></div><div><div class="dl">Timeline</div><div class="dv" style="color:var(--gold)">6–9 months</div></div></div>
+        <div class="pitch">"Our platform and medical delivery past performance directly match the $19M Army resupply program requirement — we are the only dual-use airframe with validated delivery at TRL 7, and I would like to discuss a candidacy for the FY2026 allocation."</div>
+        <div class="conf hi">// verified — $19M confirmed on DoD FY2026 budget justification</div>
+      </div>
+      <div class="pc">
+        <div class="phd"><div><div class="pnum">PATH 3 — STRATEGIC LONG-TERM</div><div class="pname">Naval Air Systems — Successor Airframe Program</div></div><div><div class="psc">8/10</div><div class="sbar"><div class="sbf" style="width:80%;background:linear-gradient(90deg,#1a4a1a,var(--green2))"></div></div></div></div>
+        <div class="pdet"><div><div class="dl">Program office</div><div class="dv">Naval Air Systems Command</div></div><div><div class="dl">Vehicle</div><div class="dv">Sources Sought → RFP</div></div><div><div class="dl">Prime to approach</div><div class="dv">Incumbent prime or direct</div></div><div><div class="dl">Timeline</div><div class="dv" style="color:var(--gold)">12–18 months</div></div></div>
+        <div class="pitch">"Following confirmation that both incumbent airframes failed demonstration tasks, our independently actuated platform — field-validated, TRL 7, domestically manufactured — addresses the specific agility gap the program office has publicly identified."</div>
+        <div class="conf md">// confirmed — Sources Sought verified on SAM.gov</div>
+      </div>
+    </div>
+    <div class="monbox"><div class="monlbl">Monday morning action</div><div class="montxt">Contact your existing program office relationship and request a warm introduction to Army Aviation command. Simultaneously begin SBIR pre-submission outreach. The active deadline does not move.</div></div>
+    <div class="bftr"><div style="font-family:'IBM Plex Mono',monospace;font-size:9px;color:var(--t3)">SC-SAMPLE-001 // Illustrative // UNCLASSIFIED</div><div class="vbdg">91% verified · 3 outreach messages included</div></div>
+  </div>
+  <div style="display:flex;gap:12px"><button class="btn" onclick="go('contact')">Get a brief for your company →</button><button class="btng" onclick="go('pricing')">View pricing</button></div>
+</div>
+
+<!-- PRICING -->
+<div id="pg-pricing" class="pg">
+  <div class="ey">Pricing</div>
+  <h2 class="stitle">Simple, transparent pricing</h2>
+  <p class="ssub">Every paid tier includes verified signals and outreach messages. Nothing withheld for a higher tier.</p>
+  <div class="pgrid">
+    <div class="pcrd">
+      <span class="pbdg" style="background:rgba(255,255,255,.04);border:.5px solid var(--border);color:var(--t3)">Standard</span>
+      <div class="pnm">Verified brief</div>
+      <div class="pamt">$750</div>
+      <div class="pper">delivered within hours · all-in</div>
+      <div class="pdesc">Company name only. Verified signals, 3 ranked paths, and 3 outreach messages. Complete product.</div>
+      <ul class="pfeats">
+        <li><span class="fck y">✓</span>Company name only — we research</li>
+        <li><span class="fck y">✓</span>All claims verified vs. live databases</li>
+        <li><span class="fck y">✓</span>Confidence score per signal</li>
+        <li><span class="fck y">✓</span>3 outreach messages included</li>
+        <li><span class="fck y">✓</span>PDF delivery</li>
+      </ul>
+      <button class="pbtn" onclick="go('contact')">Get verified brief →</button>
+    </div>
+    <div class="pcrd feat">
+      <span class="pbdg" style="background:rgba(200,146,42,.12);color:var(--gold);border:.5px solid rgba(200,146,42,.3)">Most popular</span>
+      <div class="pnm">Brief + Agreement</div>
+      <div class="pamt">$1,250</div>
+      <div class="pper">brief + success fee agreement</div>
+      <div class="pdesc">Everything in the verified brief plus a success fee agreement. We have skin in the game alongside you.</div>
+      <ul class="pfeats">
+        <li><span class="fck y">✓</span>Everything in verified brief</li>
+        <li><span class="fck y">✓</span>1.5% of first DoD contract value</li>
+        <li><span class="fck y">✓</span>$500 advance credited against fee</li>
+        <li><span class="fck y">✓</span>18-month window</li>
+        <li><span class="fck y">✓</span>Ongoing signal monitoring</li>
+      </ul>
+      <button class="pbtn" onclick="go('contact')">Get brief + agreement →</button>
+    </div>
+    <div class="pcrd">
+      <span class="pbdg" style="background:rgba(255,255,255,.04);border:.5px solid var(--border);color:var(--t3)">Ongoing</span>
+      <div class="pnm">Retainer</div>
+      <div class="pamt">$3,000</div>
+      <div class="pper">per month · cancel anytime</div>
+      <div class="pdesc">Continuous monitoring, weekly intelligence updates, and outreach drafted on your behalf every week.</div>
+      <ul class="pfeats">
+        <li><span class="fck y">✓</span>Weekly solicitation alerts</li>
+        <li><span class="fck y">✓</span>New program office activity</li>
+        <li><span class="fck y">✓</span>Outreach drafted weekly</li>
+        <li><span class="fck y">✓</span>Pipeline tracking</li>
+        <li><span class="fck y">✓</span>Monthly strategy call</li>
+      </ul>
+      <button class="pbtn" onclick="go('contact')">Apply for retainer →</button>
+    </div>
+  </div>
+
+  <div style="background:var(--bg2);border:.5px solid var(--border);border-radius:8px;padding:1.35rem 1.5rem;display:flex;gap:1.5rem;align-items:flex-start;flex-wrap:wrap;margin:0 0 2.5rem">
+    <div style="flex:1;min-width:220px">
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:9px;color:var(--gold);letter-spacing:.12em;margin:0 0 .45rem;opacity:.8">HOW THE SUCCESS FEE WORKS</div>
+      <div style="font-family:'Syne',sans-serif;font-size:16px;font-weight:700;color:#f0f4ff;margin:0 0 .35rem;letter-spacing:-.02em">We only win when you win</div>
+      <div style="font-size:12px;color:var(--t2);line-height:1.65">Pay a $500 advance at signing — credited against your first success fee payment. If you win a DoD contract from a path we identified, we receive 1.5% of that contract value. 18-month window. Non-refundable advance if no contract results.</div>
+    </div>
+    <div style="background:var(--bg3);border:.5px solid var(--border);border-radius:6px;padding:1rem;min-width:185px">
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:9px;color:var(--t3);margin:0 0 .4rem">Example payout</div>
+      <div style="font-size:12px;color:var(--t2);margin:0 0 3px">$500K SBIR Phase II →</div>
+      <div style="font-family:'Syne',sans-serif;font-size:20px;font-weight:800;color:var(--green2);letter-spacing:-.02em">$7,000 net</div>
+      <div style="font-size:11px;color:var(--t3);margin-top:2px">$7,500 fee minus $500 advance</div>
+    </div>
+  </div>
+
+  <div class="ey">Frequently asked questions</div>
+  <div class="faq">
+    <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">What if the brief doesn't lead to a contract?<span class="faq-icon">+</span></div><div class="faq-a">The brief delivers verified intelligence and ready-to-send outreach — the result depends on your follow-through and technology fit. We do not guarantee contract awards. If you add the success fee agreement, the $500 advance is non-refundable, but no further fee is owed unless a contract results from a path we identified.</div></div>
+    <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">What industries do you cover?<span class="faq-icon">+</span></div><div class="faq-a">Any company with dual-use technology relevant to DoD priorities. We cover autonomous systems, biotech, advanced manufacturing, audio and communications, defense software, materials science, directed energy, and supply chain logistics. If your technology solves a real problem, we can find the DoD path to it.</div></div>
+    <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">Can I request focus on a specific program office or vehicle?<span class="faq-icon">+</span></div><div class="faq-a">Yes. Use the optional notes field in the request form to specify priorities — SOCOM, AFWERX, DIU, a specific SBIR track, or a named program office. We factor your guidance into the brief without limiting the search to only what you specify.</div></div>
+    <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">How is this different from searching SAM.gov myself?<span class="faq-icon">+</span></div><div class="faq-a">SAM.gov shows you what is posted. SignalCordon finds the connection between what you do and what is posted — then verifies it, ranks it by fit and timeline, and writes the outreach. The gap between "there is a solicitation" and "here is the path, the person to contact, and the exact words to use" is what SignalCordon closes.</div></div>
+    <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">What happens after I receive the brief?<span class="faq-icon">+</span></div><div class="faq-a">You receive three ready-to-send outreach emails — one per contract path — with the warm hook named in sentence one and your specific value in sentence two. Review, personalize if needed, and send. If you want ongoing monitoring and weekly outreach drafting, the retainer tier covers that.</div></div>
+  </div>
+
+  <div class="ent">
+    <div class="ent-body">
+      <div class="ent-title">Enterprise and volume inquiries</div>
+      <div class="ent-sub">If you represent a prime contractor BD team, a defense accelerator, or an organization needing volume briefs or API-level access, contact us directly. We work with organizations of all sizes on custom arrangements.</div>
+    </div>
+    <button class="btn" onclick="go('contact')">Contact us →</button>
+  </div>
+</div>
+
+<!-- CONTACT -->
+<div id="pg-contact" class="pg">
+  <div class="ey">Get started</div>
+  <h2 class="stitle">Get your brief</h2>
+  <p class="ssub">Enter a company name. We analyze it and deliver your verified brief — with 3 outreach messages — within hours.</p>
+  <div class="cwrap">
+    <div class="cform">
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:9px;color:var(--gold);letter-spacing:.14em;margin:0 0 1.35rem;opacity:.8">// REQUEST A BRIEF</div>
+      <div class="fg"><label class="fl">Company name to analyze</label><input class="fi" type="text" placeholder="Enter a company name"><div style="font-size:10px;color:var(--t3);margin-top:4px;font-family:'IBM Plex Mono',monospace;opacity:.7">That's all we need. We research the rest.</div></div>
+      <div class="fg"><label class="fl">Your name</label><input class="fi" type="text" placeholder="Jane Smith"></div>
+      <div class="fg"><label class="fl">Your email</label><input class="fi" type="email" placeholder="you@company.com"></div>
+      <div class="fg"><label class="fl">Select a tier</label>
+        <select class="fi">
+          <option>Verified brief — $750</option>
+          <option>Brief + success fee agreement — $1,250</option>
+          <option>Monthly retainer — $3,000/month</option>
+          <option>Enterprise or volume inquiry</option>
+        </select>
+      </div>
+      <div class="fg"><label class="fl">Anything specific to focus on? (optional)</label><textarea class="fi" rows="3" placeholder="e.g. Focus on SOCOM paths, we have a deadline in 60 days, we already have an AFWERX relationship..."></textarea></div>
+      <button class="btn" id="sbtn" style="width:100%;padding:14px;font-size:13px;letter-spacing:.06em" onclick="subm()">Submit request →</button>
+    </div>
+    <div>
+      <div style="font-family:'Syne',sans-serif;font-size:19px;font-weight:700;color:#f0f4ff;margin:0 0 .45rem;letter-spacing:-.02em">What happens next</div>
+      <div style="font-size:13px;color:var(--t2);line-height:1.7;margin:0 0 1.75rem">We look up the company from public sources and run the full analysis. We will follow up with your invoice and brief within hours.</div>
+      <div class="ci"><div class="ci-ico"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="7" r="5.5" stroke="#c8922a" stroke-width=".75"/><path d="M7 4.5v2.5l1.5 1" stroke="#c8922a" stroke-width=".75" stroke-linecap="round"/></svg></div><div><div class="ci-t">Delivery</div><div class="ci-v">Within hours of payment confirmation</div></div></div>
+      <div class="ci"><div class="ci-ico"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><rect x="1.5" y="2.5" width="11" height="9" rx="1.5" stroke="#c8922a" stroke-width=".75"/><path d="M1.5 5.5h11" stroke="#c8922a" stroke-width=".75"/></svg></div><div><div class="ci-t">Payment</div><div class="ci-v">Stripe invoice on confirmation. Pay before delivery.</div></div></div>
+      <div class="ci"><div class="ci-ico"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2.5 7l3 3L11.5 4" stroke="#3a7a4a" stroke-width=".75" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div><div class="ci-t">What you receive</div><div class="ci-v">PDF brief — 3 paths, confidence scores, 3 outreach messages</div></div></div>
+      <div style="background:var(--bg2);border:.5px solid var(--border);border-radius:8px;padding:1.1rem;margin-top:1.5rem">
+        <div style="font-family:'IBM Plex Mono',monospace;font-size:9px;color:var(--gold);letter-spacing:.12em;margin:0 0 .6rem;opacity:.8">INDUSTRIES WE COVER</div>
+        <div class="ind-tags">
+          <span class="tag">Autonomous systems</span><span class="tag">UAS</span><span class="tag">Robotics</span><span class="tag">Biotech</span><span class="tag">Medical devices</span><span class="tag">Advanced manufacturing</span><span class="tag">3D printing</span><span class="tag">Communications</span><span class="tag">Defense software</span><span class="tag">AI systems</span><span class="tag">Materials science</span><span class="tag">Directed energy</span><span class="tag">Logistics</span><span class="tag">Supply chain</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="ft">SignalCordon LLC // Unclassified defense BD intelligence<br>Founded 2026 · All briefs unclassified</div>
+  <div class="ft" style="text-align:right">No clearance required<br>UC Berkeley · Defense BD Intelligence</div>
+</footer>
+
+<script>
+const PAGES=['home','how','brief','pricing','contact'];
+function go(id){
+  PAGES.forEach(p=>{
+    const pg=document.getElementById('pg-'+p);
+    const nb=document.getElementById('n-'+p);
+    if(pg)pg.classList.remove('on');
+    if(nb)nb.classList.remove('on');
+  });
+  const t=document.getElementById('pg-'+id);
+  const nb=document.getElementById('n-'+id);
+  if(t)t.classList.add('on');
+  if(nb)nb.classList.add('on');
+  window.scrollTo(0,0);
+}
+function subm(){
+  const b=document.getElementById('sbtn');
+  if(!b||b.disabled)return;
+  b.textContent='Submitted — we\'ll follow up within 24 hours ✓';
+  b.style.background='#3a7a4a';
+  b.disabled=true;
+}
+function capsubm(){
+  const inp=document.getElementById('cap-email');
+  const btn=document.querySelector('.cap-btn');
+  if(!inp||!inp.value)return;
+  btn.textContent='Subscribed ✓';
+  btn.style.background='#3a7a4a';
+  inp.disabled=true;btn.disabled=true;
+}
+function toggleFaq(el){
+  const item=el.closest('.faq-item');
+  const isOpen=item.classList.contains('open');
+  document.querySelectorAll('.faq-item').forEach(i=>i.classList.remove('open'));
+  if(!isOpen)item.classList.add('open');
+}
+</script>
+</body>
+</html>
