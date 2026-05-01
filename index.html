@@ -579,19 +579,31 @@ footer{border-top:.5px solid var(--border);padding:2rem 3.5rem;display:flex;just
   <div class="cwrap">
     <div class="cform">
       <div style="font-family:'IBM Plex Mono',monospace;font-size:9px;color:var(--gold);letter-spacing:.14em;margin:0 0 1.35rem;opacity:.8">// REQUEST A BRIEF</div>
-      <div class="fg"><label class="fl">Company name to analyze</label><input class="fi" type="text" placeholder="Enter a company name"><div style="font-size:10px;color:var(--t3);margin-top:4px;font-family:'IBM Plex Mono',monospace;opacity:.7">That's all we need. We research the rest.</div></div>
-      <div class="fg"><label class="fl">Your name</label><input class="fi" type="text" placeholder="Jane Smith"></div>
-      <div class="fg"><label class="fl">Your email</label><input class="fi" type="email" placeholder="you@company.com"></div>
-      <div class="fg"><label class="fl">Select a tier</label>
-        <select class="fi">
-          <option>Verified brief — $750</option>
-          <option>Brief + success fee agreement — $1,250</option>
-          <option>Monthly retainer — $3,000/month</option>
-          <option>Enterprise or volume inquiry</option>
-        </select>
-      </div>
-      <div class="fg"><label class="fl">Anything specific to focus on? (optional)</label><textarea class="fi" rows="3" placeholder="e.g. Focus on SOCOM paths, we have a deadline in 60 days, we already have an AFWERX relationship..."></textarea></div>
-      <button class="btn" id="sbtn" style="width:100%;padding:14px;font-size:13px;letter-spacing:.06em" onclick="subm()">Submit request →</button>
+      <form id="brief-form" action="https://formspree.io/f/xjglkrqv" method="POST">
+        <div class="fg">
+          <label class="fl">Company name to analyze</label>
+          <input class="fi" type="text" name="company" placeholder="Enter a company name" required>
+          <div style="font-size:10px;color:var(--t3);margin-top:4px;font-family:'IBM Plex Mono',monospace;opacity:.7">That's all we need. We research the rest.</div>
+        </div>
+        <div class="fg"><label class="fl">Your name</label><input class="fi" type="text" name="name" placeholder="Jane Smith" required></div>
+        <div class="fg"><label class="fl">Your email</label><input class="fi" type="email" name="email" placeholder="you@company.com" required></div>
+        <div class="fg">
+          <label class="fl">Select a tier</label>
+          <select class="fi" name="tier">
+            <option>Verified brief — $750</option>
+            <option>Brief + success fee agreement — $1,250</option>
+            <option>Monthly retainer — $3,000/month</option>
+            <option>Enterprise or volume inquiry</option>
+          </select>
+        </div>
+        <div class="fg">
+          <label class="fl">Anything specific to focus on? (optional)</label>
+          <textarea class="fi" name="notes" rows="3" placeholder="e.g. Focus on SOCOM paths, we have a deadline in 60 days, we already have an AFWERX relationship..."></textarea>
+        </div>
+        <input type="hidden" name="_subject" value="New SignalCordon Brief Request">
+        <input type="hidden" name="_next" value="https://www.signalcordon.com">
+        <button type="submit" class="btn" id="sbtn" style="width:100%;padding:14px;font-size:13px;letter-spacing:.06em">Submit request →</button>
+      </form>
     </div>
     <div>
       <div style="font-family:'Syne',sans-serif;font-size:19px;font-weight:700;color:#f0f4ff;margin:0 0 .45rem;letter-spacing:-.02em">What happens next</div>
