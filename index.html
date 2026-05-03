@@ -4,6 +4,12 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+<!-- SIGNALCORDON // UNCLASSIFIED // FOUO -->
+<!-- DOCUMENT: SC-WEB-2026-001 // REVISION: v8 -->
+<!-- CLASSIFICATION: UNCLASSIFIED // FOR OFFICIAL USE ONLY -->
+<!-- HANDLING: No dissemination restrictions apply -->
+<!-- DERIVED FROM: Multiple sources // DECLASSIFY ON: 20510101 -->
+
 <!-- Primary SEO -->
 <title>SignalCordon — DoD Contract Intelligence for Dual-Use Companies</title>
 <meta name="description" content="Type a company name. SignalCordon searches SAM.gov, SBIR.gov, DIU, and NDAA budget lines to find your 3 fastest paths to a DoD contract — with verified signals and ready-to-send outreach delivered within hours.">
@@ -64,6 +70,7 @@ gtag('config','G-DDP7K0LY76');
   --text:#ccd4e4;--t2:#7a8a9a;--t3:#3a4a5a;--t4:#1a2030;
   --nav-bg:rgba(7,9,12,.97);
   --shadow:none;
+  --phi:1.618;--arm:33px;--hept:51.4deg;--ratio:0.0625;
 }
 
 /* LIGHT MODE */
@@ -106,7 +113,7 @@ body.light .pbtn{color:#1a2030}
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
 body{background:var(--bg);color:var(--text);font-family:'IBM Plex Sans',sans-serif;overflow-x:hidden;transition:background .25s,color .25s}
-body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(var(--border) 1px,transparent 1px),linear-gradient(90deg,var(--border) 1px,transparent 1px);background-size:64px 64px;opacity:.10;pointer-events:none;z-index:0;transition:opacity .25s}
+body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(var(--border) 1px,transparent 1px),linear-gradient(90deg,var(--border) 1px,transparent 1px);background-size:64px 64px;opacity:.10;pointer-events:none;z-index:0;transition:opacity .25s;animation:morse-sc 14s ease-in-out infinite}
 @supports(-webkit-overflow-scrolling:touch){body::before{position:absolute;min-height:100vh}}
 ::selection{background:var(--gold);color:#fff}
 
@@ -115,7 +122,7 @@ body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(
 .logo{display:flex;align-items:center;gap:10px;cursor:pointer}
 .lmark{width:26px;height:26px;display:grid;place-items:center;transition:opacity .25s;flex-shrink:0}
 .lmark svg{width:26px;height:26px}
-.lname{font-family:'Syne',sans-serif;font-size:17px;font-weight:800;color:#f0f4ff;letter-spacing:-.02em;transition:color .25s}
+.lname{font-family:'Syne',sans-serif;font-size:17px;font-weight:800;color:#f0f4ff;letter-spacing:1.618px;transition:color .25s}
 .navlinks{display:flex;align-items:center;gap:1.75rem}
 .nl{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--t2);cursor:pointer;letter-spacing:.04em;background:none;border:none;padding:4px 0;transition:color .15s;border-bottom:1.5px solid transparent}
 .nl:hover,.nl.on{color:var(--text);border-bottom-color:var(--gold)}
@@ -137,17 +144,35 @@ body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(
 @keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
 @keyframes urgepulse{0%,100%{border-color:var(--urgent)}50%{border-color:#e06040}}
 
+/* MORSE: ··· −·−· (S-C) encoded in grid opacity */
+@keyframes morse-sc{
+  0%,3%{opacity:.12}3.1%,6%{opacity:.07}
+  6.1%,9%{opacity:.12}9.1%,12%{opacity:.07}
+  12.1%,15%{opacity:.12}15.1%,23%{opacity:.07}
+  23.1%,31%{opacity:.12}31.1%,34%{opacity:.07}
+  34.1%,37%{opacity:.12}37.1%,40%{opacity:.07}
+  40.1%,48%{opacity:.12}48.1%,51%{opacity:.07}
+  51.1%,54%{opacity:.12}54.1%,100%{opacity:.07}
+}
+
+/* Esoteric layers */
+.sc-glyph{position:absolute;font-family:'IBM Plex Mono',monospace;font-size:7px;color:var(--gold);opacity:.015;pointer-events:none;user-select:none;z-index:0;letter-spacing:.1em}
+.sc-flash{position:fixed;inset:0;background:var(--gold);opacity:0;pointer-events:none;z-index:9999;transition:opacity .1s}
+.sc-flash.on{opacity:.06;transition:opacity .05s}
+.sc-scroll-diamond{position:fixed;right:12px;top:61.8%;width:6px;height:6px;background:var(--gold);transform:rotate(45deg);opacity:0;transition:opacity 1.618s;pointer-events:none;z-index:999}
+.sc-scroll-diamond.vis{opacity:.18}
+.sc-class-bar{position:fixed;top:0;left:0;right:0;height:18px;background:rgba(7,9,12,.95);border-bottom:.5px solid var(--gold);display:flex;align-items:center;justify-content:center;font-family:'IBM Plex Mono',monospace;font-size:8px;color:var(--gold);letter-spacing:.2em;opacity:0;pointer-events:none;z-index:10001;transition:opacity .15s}
+.sc-class-bar.vis{opacity:1}
+#pg-signals{display:none;min-height:100vh;width:100%;position:relative;z-index:1}
+#pg-signals.on{display:flex;align-items:center;justify-content:center;flex-direction:column;gap:1.5rem;animation:fi .35s ease}
+.ft-binary{position:absolute;font-family:'IBM Plex Mono',monospace;font-size:9px;color:var(--gold);opacity:.02;pointer-events:none;user-select:none;letter-spacing:.3em}
+
 .ey{font-family:'IBM Plex Mono',monospace;font-size:9px;color:var(--gold);letter-spacing:.22em;text-transform:uppercase;margin:0 0 1rem;display:flex;align-items:center;gap:10px}
 .ey::before{content:'◇ //';opacity:.5}
 .ey::after{content:'';flex:1;height:0;border-top:.5px solid transparent;border-image:linear-gradient(90deg,var(--border2),transparent) 1;max-width:160px}
 
-/* Section bracket divider */
-.sec-div{display:flex;align-items:center;justify-content:center;gap:0;margin:3.5rem 0 2.5rem;position:relative;height:12px}
-.sec-div::before,.sec-div::after{content:'';width:24px;height:12px;border-color:var(--gold);border-style:solid;border-width:0;opacity:.18}
-.sec-div::before{border-top-width:.5px;border-left-width:.5px}
-.sec-div::after{border-bottom-width:.5px;border-right-width:.5px}
-.sec-div-line{flex:1;height:0;border-top:.5px solid var(--border);max-width:200px}
-.sec-div-diamond{width:5px;height:5px;background:var(--gold);transform:rotate(45deg);opacity:.2;margin:0 8px;flex-shrink:0}
+/* Section spacing */
+.sec-gap{margin:2.5rem 0 0}
 .stitle{font-family:'Syne',sans-serif;font-size:clamp(26px,4.5vw,54px);font-weight:800;color:#f0f4ff;letter-spacing:-.04em;line-height:1.06;margin:0 0 .9rem;transition:color .25s}
 .ssub{font-size:15px;color:var(--t2);line-height:1.75;max-width:540px;margin:0 0 2.5rem}
 .btn{font-family:'IBM Plex Mono',monospace;font-size:12px;font-weight:500;background:var(--gold);color:#07090c;padding:13px 24px;border-radius:4px;cursor:pointer;border:none;letter-spacing:.05em;transition:all .15s;display:inline-block}
@@ -385,7 +410,7 @@ textarea.fi{resize:vertical;min-height:90px;line-height:1.6}
   .cap-body{min-width:unset;width:100%}
   .oe-field{flex-direction:column;gap:2px}
   .ey::after{display:none}
-  .sec-div{margin:2rem 0 1.5rem}
+  .sec-gap{margin:1.5rem 0 0}
 }
 
 /* MOBILE — narrow iPhones (375px and below) */
@@ -418,7 +443,7 @@ footer{border-top:.5px solid var(--border);padding:2rem 3.5rem;display:flex;just
 <body>
 
 <div id="nav">
-  <div class="logo" onclick="go('home')" role="link" aria-label="SignalCordon home">
+  <div class="logo" onclick="go('home')" role="link" aria-label="SignalCordon home" data-arm="33" data-phi="1.618" data-hept="51.4" data-ratio="1:2:16">
     <div class="lmark"><svg viewBox="0 0 26 26" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><g stroke="#c8922a" stroke-width="1.3" stroke-linecap="square" fill="none"><line x1="5" y1="5" x2="5" y2="10"/><line x1="5" y1="5" x2="10" y2="5"/><line x1="21" y1="5" x2="21" y2="10"/><line x1="21" y1="5" x2="16" y2="5"/><line x1="5" y1="21" x2="5" y2="16"/><line x1="5" y1="21" x2="10" y2="21"/><line x1="21" y1="21" x2="21" y2="16"/><line x1="21" y1="21" x2="16" y2="21"/></g><polygon points="13,9.5 16.5,13 13,16.5 9.5,13" fill="#c8922a"/></svg></div>
     <span class="lname">SignalCordon</span>
   </div>
@@ -435,8 +460,10 @@ footer{border-top:.5px solid var(--border);padding:2rem 3.5rem;display:flex;just
 </div>
 
 <!-- HOME -->
+<!-- SIGINT INTERCEPT 1/7 — SIGNAL ACQUISITION — SECTOR ALPHA CONFIRMED -->
 <div id="pg-home" class="pg on" role="main">
   <div class="hero">
+    <span class="sc-glyph" style="top:20px;left:8px" aria-label="intercept alpha: 38.8977 -77.0365">THE</span>
     <div class="hero-line"></div>
     <div class="kicker"><div class="kd"></div>Live database search · Verified signals · No clearance required</div>
     <h1 class="stitle">Your fastest path<br>to a <span style="color:var(--gold)">DoD contract.</span></h1>
@@ -454,30 +481,35 @@ footer{border-top:.5px solid var(--border);padding:2rem 3.5rem;display:flex;just
     </div>
   </div>
 
-  <div class="sec-div"><div class="sec-div-line"></div><div class="sec-div-diamond"></div><div class="sec-div-line"></div></div>
+  <div class="sec-gap"></div>
 
   <div class="ey">How it works</div>
-  <div class="how-grid" style="margin:0 0 1rem">
+  <div class="how-grid" style="margin:0 0 1rem;position:relative">
+    <span class="sc-glyph" style="bottom:4px;right:8px" aria-label="intercept bravo: 51.4° interval">SIGNAL</span>
     <div class="hc"><div class="hnum">01 // Input</div><div class="ht">Just the company name</div><div class="hb">No description required. We research the company from public sources — website, SBIR history, SAM.gov records, and funding announcements.</div></div>
     <div class="hc"><div class="hnum">02 // Search</div><div class="ht">Six live databases</div><div class="hb">SAM.gov, SBIR.gov, DIU, NDAA budget lines, executive orders, and prime award histories — simultaneously. Every claim verified before delivery.</div></div>
     <div class="hc"><div class="hnum">03 // Deliver</div><div class="ht">Brief + outreach within hours</div><div class="hb">3 ranked paths, confidence scores, program offices, warm hooks, and 3 ready-to-send outreach messages. Everything included.</div></div>
   </div>
   <div style="margin:0 0 3.5rem;text-align:right"><button class="btng" style="font-size:11px;padding:9px 16px" onclick="go('how')">Full explanation →</button></div>
 
-  <div class="sec-div"><div class="sec-div-line"></div><div class="sec-div-diamond"></div><div class="sec-div-line"></div></div>
+  <div class="sec-gap"></div>
 
   <div class="ey">Why it works</div>
-  <div class="value-grid">
+  <!-- SIGINT INTERCEPT 3/7 — VERIFICATION LAYER — BRAVO CONFIRMED -->
+  <div class="value-grid" style="position:relative">
+    <span class="sc-glyph" style="top:4px;left:50%;transform:translateX(-50%)" aria-label="intercept charlie: phi ratio 1.618">HIDES</span>
     <div class="vcard"><div class="vc-icon">// Intelligence</div><div class="vc-title">Specific, not generic</div><div class="vc-body">Every brief references named solicitation numbers, specific program offices, and dollar amounts. Not a summary of what DoD does — a map of where your company fits right now.</div></div>
     <div class="vcard"><div class="vc-icon">// Verification</div><div class="vc-title">Every claim checked</div><div class="vc-body">A second AI agent independently checks every dollar figure, solicitation number, and program office name against live databases. Briefs below 70% confidence are held for review.</div></div>
     <div class="vcard"><div class="vc-icon">// Outreach</div><div class="vc-title">Ready to send Monday morning</div><div class="vc-body">Three outreach messages — one per contract path — with the warm hook named in sentence one and the specific value in sentence two. No generic BD language.</div></div>
     <div class="vcard"><div class="vc-icon">// Access</div><div class="vc-title">Built for companies without a BD team</div><div class="vc-body">Defense BD consultants charge $15,000–$25,000 per month and take weeks to produce what SignalCordon delivers within hours. This is the on-ramp for companies with real technology and no BD infrastructure.</div></div>
   </div>
 
-  <div class="sec-div"><div class="sec-div-line"></div><div class="sec-div-diamond"></div><div class="sec-div-line"></div></div>
+  <div class="sec-gap"></div>
 
   <div class="ey">Who built this</div>
-  <div class="founder">
+  <!-- SIGINT INTERCEPT 4/7 — ASSET IDENTIFICATION — DELTA CONFIRMED -->
+  <div class="founder" style="position:relative">
+    <span class="sc-glyph" style="bottom:8px;right:12px" aria-label="intercept delta: 33rd degree key">IN</span>
     <div class="founder-label">// Founder</div>
     <div class="founder-pull">SignalCordon was built by someone who noticed that companies with <span>genuine dual-use technology</span> were losing to companies with better BD networks — not better products.</div>
     <div class="founder-body">The intelligence gap between a well-funded startup with no government relationships and an established defense contractor is a process problem, not a capability problem. The DoD procurement system is not designed to be navigated without institutional knowledge — but the signals are all public. Every solicitation, every budget line, every program office contact is available if you know where to look and how to connect it to a specific company's capability. SignalCordon is the system that does that connecting — automatically, verifiably, and without requiring a clearance or a defense insider on your team.</div>
@@ -503,6 +535,7 @@ footer{border-top:.5px solid var(--border);padding:2rem 3.5rem;display:flex;just
 </div>
 
 <!-- HOW IT WORKS -->
+<!-- SIGINT INTERCEPT 2/7 — METHODOLOGY DISCLOSED — SECTOR BRAVO CONFIRMED -->
 <div id="pg-how" class="pg">
   <div class="ey">How it works</div>
   <h2 class="stitle">Intelligence in 3 steps</h2>
@@ -578,7 +611,9 @@ footer{border-top:.5px solid var(--border);padding:2rem 3.5rem;display:flex;just
 </div>
 
 <!-- SAMPLE BRIEF -->
-<div id="pg-brief" class="pg">
+<!-- SIGINT INTERCEPT 5/7 — BRIEF ANALYSIS — ECHO CONFIRMED -->
+<div id="pg-brief" class="pg" style="position:relative">
+  <span class="sc-glyph" style="top:80px;right:20px" aria-label="intercept echo: heptagram 7 points">PLAIN</span>
   <div class="ey">Sample brief</div>
   <h2 class="stitle">What you actually receive</h2>
   <p class="ssub">This is a representative SignalCordon brief showing the format, depth, and structure of every verified output. All company details shown are illustrative.</p>
@@ -630,7 +665,9 @@ footer{border-top:.5px solid var(--border);padding:2rem 3.5rem;display:flex;just
 </div>
 
 <!-- PRICING -->
-<div id="pg-pricing" class="pg">
+<!-- SIGINT INTERCEPT 6/7 — VALUE ASSESSMENT — FOXTROT CONFIRMED -->
+<div id="pg-pricing" class="pg" style="position:relative">
+  <span class="sc-glyph" style="bottom:20px;left:12px" aria-label="intercept foxtrot: ratio 1:2:16">SIGHT</span>
   <div class="ey">Pricing</div>
   <h2 class="stitle">Simple, transparent pricing</h2>
   <p class="ssub">Every paid tier includes verified signals and outreach messages. Nothing withheld for a higher tier.</p>
@@ -715,7 +752,9 @@ footer{border-top:.5px solid var(--border);padding:2rem 3.5rem;display:flex;just
 </div>
 
 <!-- CONTACT -->
-<div id="pg-contact" class="pg">
+<!-- SIGINT INTERCEPT 7/7 — TRANSMISSION COMPLETE — GOLF CONFIRMED — END OF MESSAGE -->
+<div id="pg-contact" class="pg" style="position:relative">
+  <span class="sc-glyph" style="top:80px;left:50%;transform:translateX(-50%)" aria-label="intercept golf: signal confirmed — cordon established">ALWAYS</span>
   <div class="ey">Get started</div>
   <h2 class="stitle">Get your brief</h2>
   <p class="ssub">Enter a company name. We analyze it and deliver your verified brief — with 3 outreach messages — within hours.</p>
@@ -764,13 +803,44 @@ footer{border-top:.5px solid var(--border);padding:2rem 3.5rem;display:flex;just
   </div>
 </div>
 
-<footer role="contentinfo">
+<!-- SIGINT CABLE: SECTION TERMINUS // ALL PAGES RENDERED // CLASSIFICATION UNCHANGED -->
+
+<!-- HIDDEN SIGNAL PAGE — accessible only via signalcordon.com/#signals -->
+<div id="pg-signals">
+  <svg viewBox="0 0 120 120" width="80" height="80" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <g stroke="#c8922a" stroke-width="2" stroke-linecap="square" fill="none">
+      <line x1="20" y1="20" x2="20" y2="38"/><line x1="20" y1="20" x2="38" y2="20"/>
+      <line x1="100" y1="20" x2="100" y2="38"/><line x1="100" y1="20" x2="82" y2="20"/>
+      <line x1="20" y1="100" x2="20" y2="82"/><line x1="20" y1="100" x2="38" y2="100"/>
+      <line x1="100" y1="100" x2="100" y2="82"/><line x1="100" y1="100" x2="82" y2="100"/>
+    </g>
+    <polygon points="60,48 72,60 60,72 48,60" fill="#e8b04a" opacity=".9"/>
+    <circle cx="60" cy="60" r="2" fill="#07090c"/>
+  </svg>
+  <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--gold);letter-spacing:.3em;opacity:.7">YOU FOUND THE SIGNAL</div>
+  <div style="font-family:'IBM Plex Mono',monospace;font-size:8px;color:var(--t3);letter-spacing:.15em;margin-top:.5rem">33 · φ · 7 · 51.4° · 1:2:16</div>
+  <button class="btng" style="margin-top:2rem;font-size:10px;padding:8px 16px" onclick="location.hash='';go('home')">Return ←</button>
+</div>
+
+<footer role="contentinfo" style="position:relative">
+  <div class="ft-binary" aria-hidden="true">11111101010</div>
   <div class="ft">SignalCordon LLC // Unclassified defense BD intelligence<br>Founded 2026 · All briefs unclassified</div>
   <div class="ft" style="text-align:right">No clearance required<br>UC Berkeley · Defense BD Intelligence</div>
 </footer>
 
+<!-- Esoteric overlays -->
+<div class="sc-flash" id="sc-flash" aria-hidden="true"></div>
+<div class="sc-scroll-diamond" id="sc-sd" aria-hidden="true"></div>
+<div class="sc-class-bar" id="sc-cb" aria-hidden="true">CLASSIFICATION: UNCLASSIFIED // SIGNALCORDON</div>
+
 <script>
 const PAGES=['home','how','brief','pricing','contact'];
+
+// ◇
+console.log('%c⌐                                          ¬\n   SIGNALCORDON // UNCLASSIFIED\n   Find the signal. Draw the line.\n   33 · φ · 7 · 51.4° · 1:2:16\n└                                          ┘','color:#c8922a;font-family:monospace;font-size:11px;line-height:1.6');
+const PHI=1.6180339887;
+const ARM=33;
+const HEPT=360/7;
 
 function go(id){
   PAGES.forEach(p=>{
@@ -779,6 +849,8 @@ function go(id){
     if(pg)pg.classList.remove('on');
     if(nb)nb.classList.remove('on');
   });
+  const sp=document.getElementById('pg-signals');
+  if(sp)sp.classList.remove('on');
   const t=document.getElementById('pg-'+id);
   const nb=document.getElementById('n-'+id);
   if(t)t.classList.add('on');
@@ -887,6 +959,94 @@ function toggleFaq(el){
     el.setAttribute('aria-expanded','true');
   }
 }
+
+// === ESOTERIC LAYER ===
+
+// 1. Hero input Easter egg — typing "signal" or "cordon" triggers diamond flash
+(function(){
+  const hi=document.getElementById('hero-inp');
+  if(!hi)return;
+  hi.addEventListener('input',function(){
+    const v=this.value.toLowerCase().trim();
+    if(v==='signal'||v==='cordon'||v==='33'||v==='phi'){
+      const fl=document.getElementById('sc-flash');
+      fl.classList.add('on');
+      setTimeout(()=>fl.classList.remove('on'),Math.round(PHI*1000));
+    }
+  });
+})();
+
+// 2. 33rd click — gold flash at exactly the 33rd click anywhere
+(function(){
+  let cc=0;
+  document.addEventListener('click',function(){
+    cc++;
+    if(cc===33){
+      const fl=document.getElementById('sc-flash');
+      fl.classList.add('on');
+      setTimeout(()=>fl.classList.remove('on'),Math.round(PHI*1000));
+      cc=0;
+    }
+  });
+})();
+
+// 3. Hidden signals page — accessible via #signals hash
+function checkHash(){
+  if(location.hash==='#signals'){
+    PAGES.forEach(p=>{
+      const pg=document.getElementById('pg-'+p);
+      const nb=document.getElementById('n-'+p);
+      if(pg)pg.classList.remove('on');
+      if(nb)nb.classList.remove('on');
+    });
+    const sp=document.getElementById('pg-signals');
+    if(sp)sp.classList.add('on');
+  }
+}
+window.addEventListener('hashchange',checkHash);
+checkHash();
+
+// 7. Favicon animation — diamond rotates on tab visibility change
+(function(){
+  const favOrig='data:image/svg+xml,'+encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><rect width="32" height="32" rx="6" fill="#07090c"/><g stroke="#c8922a" stroke-width="1.5" stroke-linecap="square"><line x1="9" y1="9" x2="9" y2="14"/><line x1="9" y1="9" x2="14" y2="9"/><line x1="23" y1="9" x2="23" y2="14"/><line x1="23" y1="9" x2="18" y2="9"/><line x1="9" y1="23" x2="9" y2="18"/><line x1="9" y1="23" x2="14" y2="23"/><line x1="23" y1="23" x2="23" y2="18"/><line x1="23" y1="23" x2="18" y2="23"/></g><polygon points="16,12 20,16 16,20 12,16" fill="#c8922a"/></svg>');
+  const favRot='data:image/svg+xml,'+encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><rect width="32" height="32" rx="6" fill="#07090c"/><g stroke="#c8922a" stroke-width="1.5" stroke-linecap="square"><line x1="9" y1="9" x2="9" y2="14"/><line x1="9" y1="9" x2="14" y2="9"/><line x1="23" y1="9" x2="23" y2="14"/><line x1="23" y1="9" x2="18" y2="9"/><line x1="9" y1="23" x2="9" y2="18"/><line x1="9" y1="23" x2="14" y2="23"/><line x1="23" y1="23" x2="23" y2="18"/><line x1="23" y1="23" x2="18" y2="23"/></g><rect x="12.2" y="12.2" width="7.6" height="7.6" fill="#c8922a"/></svg>');
+  const link=document.querySelector('link[rel="icon"]');
+  if(!link)return;
+  document.addEventListener('visibilitychange',function(){
+    if(document.hidden){
+      link.href=favRot;
+    } else {
+      setTimeout(()=>{link.href=favOrig},300);
+    }
+  });
+})();
+
+// 10. Right-click classification bar — desktop only
+(function(){
+  if('ontouchstart' in window)return;
+  document.addEventListener('contextmenu',function(){
+    const cb=document.getElementById('sc-cb');
+    cb.classList.add('vis');
+    setTimeout(()=>cb.classList.remove('vis'),1618);
+  });
+})();
+
+// 11. Scroll depth diamond — appears at phi ratio (61.8%) scroll depth
+(function(){
+  const sd=document.getElementById('sc-sd');
+  if(!sd)return;
+  let shown=false;
+  window.addEventListener('scroll',function(){
+    const scrollPct=window.scrollY/(document.documentElement.scrollHeight-window.innerHeight);
+    if(scrollPct>=0.618&&!shown){
+      sd.classList.add('vis');
+      shown=true;
+    } else if(scrollPct<0.5&&shown){
+      sd.classList.remove('vis');
+      shown=false;
+    }
+  },{passive:true});
+})();
 </script>
 </body>
 </html>
