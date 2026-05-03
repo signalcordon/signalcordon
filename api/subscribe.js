@@ -1,10 +1,9 @@
-export default async function handler(req, res) {
-  // Only allow POST
+module.exports = async function handler(req, res) {
   if (req.method !== 'POST') {
     return res.status(405).json({ error: 'Method not allowed' });
   }
 
-  const { email } = req.body;
+  const { email } = req.body || {};
 
   if (!email || !email.includes('@')) {
     return res.status(400).json({ error: 'Valid email required' });
@@ -17,7 +16,7 @@ export default async function handler(req, res) {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': `Bearer ${process.env.BEEHIIV_API_KEY}`
+          'Authorization': 'Bearer ' + process.env.BEEHIIV_API_KEY
         },
         body: JSON.stringify({
           email: email,
@@ -39,4 +38,4 @@ export default async function handler(req, res) {
   } catch (error) {
     return res.status(500).json({ error: 'Internal server error' });
   }
-}
+};
