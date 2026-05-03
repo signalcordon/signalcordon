@@ -19,15 +19,20 @@
 <meta property="og:description" content="Type a company name. SignalCordon finds your 3 fastest paths to a DoD contract — verified signals and ready-to-send outreach delivered within hours. No clearance required.">
 <meta property="og:site_name" content="SignalCordon">
 <meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://www.signalcordon.com/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:type" content="image/png">
 
 <!-- Twitter Card -->
-<meta name="twitter:card" content="summary">
+<meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="SignalCordon — DoD Contract Intelligence">
 <meta name="twitter:description" content="Type a company name. Find your 3 fastest paths to a DoD contract — verified signals and outreach delivered within hours. No clearance required.">
 <meta name="twitter:site" content="@signalcordon">
+<meta name="twitter:image" content="https://www.signalcordon.com/og-image.png">
 
 <!-- Favicon -->
-<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%2307090c'/><rect x='8' y='8' width='16' height='16' rx='3' fill='none' stroke='%23c8922a' stroke-width='1.5'/><circle cx='16' cy='16' r='4' fill='%23c8922a'/></svg>">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%2307090c'/><g stroke='%23c8922a' stroke-width='1.5' stroke-linecap='square'><line x1='9' y1='9' x2='9' y2='14'/><line x1='9' y1='9' x2='14' y2='9'/><line x1='23' y1='9' x2='23' y2='14'/><line x1='23' y1='9' x2='18' y2='9'/><line x1='9' y1='23' x2='9' y2='18'/><line x1='9' y1='23' x2='14' y2='23'/><line x1='23' y1='23' x2='23' y2='18'/><line x1='23' y1='23' x2='18' y2='23'/></g><polygon points='16,12 20,16 16,20 12,16' fill='%23c8922a'/></svg>">
 
 <!-- JSON-LD -->
 <script type="application/ld+json">
@@ -108,8 +113,8 @@ body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(
 /* NAV */
 #nav{position:fixed;top:0;left:0;right:0;height:58px;background:var(--nav-bg);backdrop-filter:blur(16px);border-bottom:.5px solid var(--border);display:flex;align-items:center;justify-content:space-between;padding:0 2.5rem;z-index:1000;transition:background .25s,border-color .25s}
 .logo{display:flex;align-items:center;gap:10px;cursor:pointer}
-.lmark{width:26px;height:26px;border:.5px solid var(--gold);border-radius:5px;display:grid;place-items:center;transition:border-color .25s}
-.lmark::before{content:'';width:10px;height:10px;border-radius:50%;background:var(--gold)}
+.lmark{width:26px;height:26px;display:grid;place-items:center;transition:opacity .25s;flex-shrink:0}
+.lmark svg{width:26px;height:26px}
 .lname{font-family:'Syne',sans-serif;font-size:17px;font-weight:800;color:#f0f4ff;letter-spacing:-.02em;transition:color .25s}
 .navlinks{display:flex;align-items:center;gap:1.75rem}
 .nl{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--t2);cursor:pointer;letter-spacing:.04em;background:none;border:none;padding:4px 0;transition:color .15s;border-bottom:1.5px solid transparent}
@@ -133,8 +138,16 @@ body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(
 @keyframes urgepulse{0%,100%{border-color:var(--urgent)}50%{border-color:#e06040}}
 
 .ey{font-family:'IBM Plex Mono',monospace;font-size:9px;color:var(--gold);letter-spacing:.22em;text-transform:uppercase;margin:0 0 1rem;display:flex;align-items:center;gap:10px}
-.ey::before{content:'//';opacity:.5}
-.ey::after{content:'';flex:1;height:.5px;background:linear-gradient(90deg,var(--border2),transparent);max-width:160px}
+.ey::before{content:'◇ //';opacity:.5}
+.ey::after{content:'';flex:1;height:0;border-top:.5px solid transparent;border-image:linear-gradient(90deg,var(--border2),transparent) 1;max-width:160px}
+
+/* Section bracket divider */
+.sec-div{display:flex;align-items:center;justify-content:center;gap:0;margin:3.5rem 0 2.5rem;position:relative;height:12px}
+.sec-div::before,.sec-div::after{content:'';width:24px;height:12px;border-color:var(--gold);border-style:solid;border-width:0;opacity:.18}
+.sec-div::before{border-top-width:.5px;border-left-width:.5px}
+.sec-div::after{border-bottom-width:.5px;border-right-width:.5px}
+.sec-div-line{flex:1;height:0;border-top:.5px solid var(--border);max-width:200px}
+.sec-div-diamond{width:5px;height:5px;background:var(--gold);transform:rotate(45deg);opacity:.2;margin:0 8px;flex-shrink:0}
 .stitle{font-family:'Syne',sans-serif;font-size:clamp(26px,4.5vw,54px);font-weight:800;color:#f0f4ff;letter-spacing:-.04em;line-height:1.06;margin:0 0 .9rem;transition:color .25s}
 .ssub{font-size:15px;color:var(--t2);line-height:1.75;max-width:540px;margin:0 0 2.5rem}
 .btn{font-family:'IBM Plex Mono',monospace;font-size:12px;font-weight:500;background:var(--gold);color:#07090c;padding:13px 24px;border-radius:4px;cursor:pointer;border:none;letter-spacing:.05em;transition:all .15s;display:inline-block}
@@ -326,8 +339,12 @@ textarea.fi{resize:vertical;min-height:90px;line-height:1.6}
 .ci-v{font-size:11px;color:var(--t2);line-height:1.4}
 .ind-tags{display:flex;flex-wrap:wrap;gap:4px;margin-top:.5rem}
 
+.nl-short{display:none}
+
 /* MOBILE — tablet and large phones */
 @media(max-width:768px){
+  .nl-full{display:none}
+  .nl-short{display:inline}
   #nav{padding:0 1rem}
   .navlinks{gap:.5rem}
   .nl{font-size:9px;letter-spacing:.02em}
@@ -352,7 +369,7 @@ textarea.fi{resize:vertical;min-height:90px;line-height:1.6}
   .btn,.btng{padding:14px 20px;font-size:12px;min-height:48px}
   .pbtn{min-height:48px}
   .cap-btn{min-height:48px}
-  footer{padding:1.5rem 1rem;flex-direction:column;text-align:center}
+  footer{padding:1.25rem 1rem;flex-direction:column;text-align:center;gap:.5rem}
   .ft{text-align:center}
   .ind-tags{gap:5px}
   .bco{font-size:17px}
@@ -368,6 +385,7 @@ textarea.fi{resize:vertical;min-height:90px;line-height:1.6}
   .cap-body{min-width:unset;width:100%}
   .oe-field{flex-direction:column;gap:2px}
   .ey::after{display:none}
+  .sec-div{margin:2rem 0 1.5rem}
 }
 
 /* MOBILE — narrow iPhones (375px and below) */
@@ -401,12 +419,12 @@ footer{border-top:.5px solid var(--border);padding:2rem 3.5rem;display:flex;just
 
 <div id="nav">
   <div class="logo" onclick="go('home')" role="link" aria-label="SignalCordon home">
-    <div class="lmark"></div>
+    <div class="lmark"><svg viewBox="0 0 26 26" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><g stroke="#c8922a" stroke-width="1.3" stroke-linecap="square" fill="none"><line x1="5" y1="5" x2="5" y2="10"/><line x1="5" y1="5" x2="10" y2="5"/><line x1="21" y1="5" x2="21" y2="10"/><line x1="21" y1="5" x2="16" y2="5"/><line x1="5" y1="21" x2="5" y2="16"/><line x1="5" y1="21" x2="10" y2="21"/><line x1="21" y1="21" x2="21" y2="16"/><line x1="21" y1="21" x2="16" y2="21"/></g><polygon points="13,9.5 16.5,13 13,16.5 9.5,13" fill="#c8922a"/></svg></div>
     <span class="lname">SignalCordon</span>
   </div>
   <div class="navlinks">
-    <button class="nl" id="n-how" onclick="go('how')" aria-label="How it works">How it works</button>
-    <button class="nl" id="n-brief" onclick="go('brief')" aria-label="Sample brief">Sample brief</button>
+    <button class="nl" id="n-how" onclick="go('how')" aria-label="How it works"><span class="nl-full">How it works</span><span class="nl-short">How</span></button>
+    <button class="nl" id="n-brief" onclick="go('brief')" aria-label="Sample brief"><span class="nl-full">Sample brief</span><span class="nl-short">Brief</span></button>
     <button class="nl" id="n-pricing" onclick="go('pricing')" aria-label="Pricing">Pricing</button>
     <button id="theme-btn" onclick="toggleTheme()" aria-label="Toggle light mode">
       <span class="theme-icon" id="theme-icon">☀</span>
@@ -422,6 +440,7 @@ footer{border-top:.5px solid var(--border);padding:2rem 3.5rem;display:flex;just
     <div class="hero-line"></div>
     <div class="kicker"><div class="kd"></div>Live database search · Verified signals · No clearance required</div>
     <h1 class="stitle">Your fastest path<br>to a <span style="color:var(--gold)">DoD contract.</span></h1>
+    <div style="display:flex;align-items:center;gap:8px;margin:0 0 .6rem"><div style="width:5px;height:5px;background:var(--gold);transform:rotate(45deg);opacity:.35"></div><div style="width:40px;height:.5px;background:linear-gradient(90deg,var(--gold),transparent);opacity:.25"></div></div>
     <p class="ssub">Type a company name. SignalCordon searches live DoD databases, finds the 3 fastest contract paths, verifies every signal, and delivers the exact words to send — within hours.</p>
     <div class="hi-row">
       <input class="hi" id="hero-inp" placeholder="Enter a company or technology name..." aria-label="Company name" onkeydown="if(event.key==='Enter')go('contact')">
@@ -435,6 +454,8 @@ footer{border-top:.5px solid var(--border);padding:2rem 3.5rem;display:flex;just
     </div>
   </div>
 
+  <div class="sec-div"><div class="sec-div-line"></div><div class="sec-div-diamond"></div><div class="sec-div-line"></div></div>
+
   <div class="ey">How it works</div>
   <div class="how-grid" style="margin:0 0 1rem">
     <div class="hc"><div class="hnum">01 // Input</div><div class="ht">Just the company name</div><div class="hb">No description required. We research the company from public sources — website, SBIR history, SAM.gov records, and funding announcements.</div></div>
@@ -443,6 +464,8 @@ footer{border-top:.5px solid var(--border);padding:2rem 3.5rem;display:flex;just
   </div>
   <div style="margin:0 0 3.5rem;text-align:right"><button class="btng" style="font-size:11px;padding:9px 16px" onclick="go('how')">Full explanation →</button></div>
 
+  <div class="sec-div"><div class="sec-div-line"></div><div class="sec-div-diamond"></div><div class="sec-div-line"></div></div>
+
   <div class="ey">Why it works</div>
   <div class="value-grid">
     <div class="vcard"><div class="vc-icon">// Intelligence</div><div class="vc-title">Specific, not generic</div><div class="vc-body">Every brief references named solicitation numbers, specific program offices, and dollar amounts. Not a summary of what DoD does — a map of where your company fits right now.</div></div>
@@ -450,6 +473,8 @@ footer{border-top:.5px solid var(--border);padding:2rem 3.5rem;display:flex;just
     <div class="vcard"><div class="vc-icon">// Outreach</div><div class="vc-title">Ready to send Monday morning</div><div class="vc-body">Three outreach messages — one per contract path — with the warm hook named in sentence one and the specific value in sentence two. No generic BD language.</div></div>
     <div class="vcard"><div class="vc-icon">// Access</div><div class="vc-title">Built for companies without a BD team</div><div class="vc-body">Defense BD consultants charge $15,000–$25,000 per month and take weeks to produce what SignalCordon delivers within hours. This is the on-ramp for companies with real technology and no BD infrastructure.</div></div>
   </div>
+
+  <div class="sec-div"><div class="sec-div-line"></div><div class="sec-div-diamond"></div><div class="sec-div-line"></div></div>
 
   <div class="ey">Who built this</div>
   <div class="founder">
@@ -500,6 +525,8 @@ footer{border-top:.5px solid var(--border);padding:2rem 3.5rem;display:flex;just
       <div style="background:var(--bg3);padding:.85rem 1rem;border-top:2px solid var(--gold);transition:background .25s"><div style="font-family:'IBM Plex Mono',monospace;font-size:9px;color:var(--gold);margin:0 0 4px;letter-spacing:.06em">OPERATOR</div><div style="font-size:11px;color:var(--t2);line-height:1.55">Writes 3 outreach emails from the verified brief. Warm hook in sentence one. Specific value in sentence two.</div></div>
     </div>
   </div>
+
+  <div style="display:flex;justify-content:center;margin:0 0 2rem"><div style="width:29%;max-width:160px;height:0;border-top:.5px solid var(--gold);opacity:.12"></div></div>
 
   <div class="ey">What the outreach looks like</div>
   <h3 style="font-family:'Syne',sans-serif;font-size:20px;font-weight:700;color:var(--text);margin:0 0 .5rem;letter-spacing:-.02em">One of three emails you receive with every brief.</h3>
@@ -559,7 +586,7 @@ footer{border-top:.5px solid var(--border);padding:2rem 3.5rem;display:flex;just
     <div class="b-disclaimer">// ILLUSTRATIVE SAMPLE — Company details are representative, not from an actual client brief</div>
     <div class="bhdr">
       <div>
-        <div style="font-family:'IBM Plex Mono',monospace;font-size:9px;color:var(--gold);letter-spacing:.16em;margin:0 0 .4rem;opacity:.8">SIGNALCORDON // LIVE INTELLIGENCE BRIEF // UNCLASSIFIED</div>
+        <div style="font-family:'IBM Plex Mono',monospace;font-size:9px;color:var(--gold);letter-spacing:.16em;margin:0 0 .4rem;opacity:.8;display:flex;align-items:center;gap:8px"><span style="display:inline-block;width:5px;height:5px;background:var(--gold);transform:rotate(45deg);opacity:.5"></span>SIGNALCORDON // LIVE INTELLIGENCE BRIEF // UNCLASSIFIED</div>
         <div class="bco">AUTONOMOUS LOGISTICS CO.</div>
         <div class="bmeta">SC-SAMPLE-001 // 3 contract paths // Illustrative output<br>Autonomous UAS delivery platform · Phase II awardee · United States</div>
       </div>
@@ -788,14 +815,33 @@ function toggleTheme(){
   }
 })();
 
-function capsubm(){
+async function capsubm(){
   const inp=document.getElementById('cap-email');
   const btn=document.querySelector('.cap-btn');
-  if(!inp||!inp.value)return;
-  btn.textContent='Subscribed ✓';
-  btn.style.background='#3a7a4a';
-  inp.disabled=true;
+  if(!inp||!inp.value||!inp.value.includes('@'))return;
+  btn.textContent='Sending...';
   btn.disabled=true;
+  try{
+    const res=await fetch('https://api.beehiiv.com/v2/publications/pub_a767d1ef-c713-454e-926b-0f95c1f5a53c/subscriptions',{
+      method:'POST',
+      headers:{'Content-Type':'application/json','Authorization':'Bearer 5w3btLgN1csSNqu8rC5Da2JG7GWKdBeaAgk6C3aCsXUawPEEf8ZPPjMX93XRHhSu'},
+      body:JSON.stringify({email:inp.value,reactivate_existing:false,send_welcome_email:true,utm_source:'signalcordon_website',utm_medium:'organic'})
+    });
+    if(res.ok||res.status===201||res.status===200){
+      btn.textContent='Subscribed ✓';
+      btn.style.background='#3a7a4a';
+      inp.disabled=true;
+      if(typeof gtag!=='undefined')gtag('event','newsletter_subscribe',{event_category:'engagement',event_label:'signal_of_the_week'});
+    } else {
+      btn.textContent='Try again';
+      btn.style.background='var(--urgent)';
+      btn.disabled=false;
+    }
+  }catch(e){
+    btn.textContent='Try again';
+    btn.style.background='var(--urgent)';
+    btn.disabled=false;
+  }
 }
 
 function toggleFaq(el){
