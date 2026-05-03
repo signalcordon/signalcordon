@@ -722,7 +722,7 @@ footer{border-top:.5px solid var(--border);padding:2rem 3.5rem;display:flex;just
   <div class="cwrap">
     <div class="cform">
       <div style="font-family:'IBM Plex Mono',monospace;font-size:9px;color:var(--gold);letter-spacing:.14em;margin:0 0 1.35rem;opacity:.8">// REQUEST A BRIEF</div>
-      <form id="brief-form" action="https://formspree.io/f/xjglkrqv" method="POST">
+      <form id="brief-form" action="https://formspree.io/f/xjglkrqv" method="POST" onsubmit="return submitBrief(event)">
         <div class="fg">
           <label class="fl" for="company-inp">Company name to analyze</label>
           <input class="fi" id="company-inp" type="text" name="company" placeholder="Enter a company name" required aria-required="true">
@@ -822,12 +822,12 @@ async function capsubm(){
   btn.textContent='Sending...';
   btn.disabled=true;
   try{
-    const res=await fetch('https://api.beehiiv.com/v2/publications/pub_a767d1ef-c713-454e-926b-0f95c1f5a53c/subscriptions',{
+    const res=await fetch('/api/subscribe',{
       method:'POST',
-      headers:{'Content-Type':'application/json','Authorization':'Bearer 5w3btLgN1csSNqu8rC5Da2JG7GWKdBeaAgk6C3aCsXUawPEEf8ZPPjMX93XRHhSu'},
-      body:JSON.stringify({email:inp.value,reactivate_existing:false,send_welcome_email:true,utm_source:'signalcordon_website',utm_medium:'organic'})
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({email:inp.value})
     });
-    if(res.ok||res.status===201||res.status===200){
+    if(res.ok){
       btn.textContent='Subscribed ✓';
       btn.style.background='#3a7a4a';
       inp.disabled=true;
@@ -842,6 +842,36 @@ async function capsubm(){
     btn.style.background='var(--urgent)';
     btn.disabled=false;
   }
+}
+
+async function submitBrief(e){
+  e.preventDefault();
+  const form=document.getElementById('brief-form');
+  const btn=form.querySelector('button[type="submit"]');
+  const origText=btn.textContent;
+  btn.textContent='Submitting...';
+  btn.disabled=true;
+  try{
+    const data=new FormData(form);
+    const res=await fetch('https://formspree.io/f/xjglkrqv',{
+      method:'POST',
+      body:data,
+      headers:{'Accept':'application/json'}
+    });
+    if(res.ok){
+      form.innerHTML='<div style="text-align:center;padding:2.5rem 1rem"><div style="font-family:IBM Plex Mono,monospace;font-size:9px;color:var(--green2);letter-spacing:.14em;margin:0 0 1rem;opacity:.8">// REQUEST RECEIVED</div><div style="font-family:Syne,sans-serif;font-size:22px;font-weight:700;color:var(--text);margin:0 0 .5rem;letter-spacing:-.02em">Brief request submitted.</div><div style="font-size:13px;color:var(--t2);line-height:1.7">We will follow up with your invoice and brief within hours.<br>Check your inbox at the email you provided.</div></div>';
+      if(typeof gtag!=='undefined')gtag('event','brief_request',{event_category:'conversion',event_label:'contact_form'});
+    } else {
+      btn.textContent='Something went wrong — try again';
+      btn.style.background='var(--urgent)';
+      btn.disabled=false;
+    }
+  }catch(err){
+    btn.textContent='Something went wrong — try again';
+    btn.style.background='var(--urgent)';
+    btn.disabled=false;
+  }
+  return false;
 }
 
 function toggleFaq(el){
