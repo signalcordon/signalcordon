@@ -46,7 +46,7 @@
 
 <!-- JSON-LD -->
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"ProfessionalService","name":"SignalCordon","url":"https://www.signalcordon.com","description":"Defense business development intelligence for dual-use companies. We search live DoD databases and deliver verified contract paths with outreach messages within hours.","founder":{"@type":"Person","alumniOf":{"@type":"CollegeOrUniversity","name":"University of California, Berkeley"}},"areaServed":"United States","serviceType":"Defense BD Intelligence","priceRange":"$750 - $3000","knowsAbout":["DoD contracts","SBIR","SAM.gov","Defense procurement","GovCon","DIU","NDAA","Dual-use technology"]}
+{"@context":"https://schema.org","@type":"ProfessionalService","name":"SignalCordon","url":"https://www.signalcordon.com","description":"Defense business development intelligence for dual-use companies. We search live DoD databases and deliver verified contract paths with outreach messages within hours.","founder":{"@type":"Person","alumniOf":{"@type":"CollegeOrUniversity","name":"University of California, Berkeley"}},"areaServed":"United States","serviceType":"Defense BD Intelligence","priceRange":"$750 - $3000/month","knowsAbout":["DoD contracts","SBIR","SAM.gov","Defense procurement","GovCon","DIU","NDAA","Dual-use technology"]}
 </script>
 
 <!-- Google Analytics 4 -->
@@ -303,9 +303,9 @@ body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(
 .dl{font-family:'IBM Plex Mono',monospace;font-size:9px;color:var(--t3);text-transform:uppercase;letter-spacing:.06em}
 .dv{font-size:11px;color:var(--text);margin:1px 0 0;line-height:1.4}
 .pitch{background:var(--gbg);border-left:2px solid var(--green);padding:.55rem .8rem;border-radius:0 4px 4px 0;font-size:11px;color:var(--green3);font-style:italic;line-height:1.7;margin:.5rem 0;transition:background .25s}
-.conf{display:inline-flex;align-items:center;gap:4px;font-family:'IBM Plex Mono',monospace;font-size:9px;padding:2px 7px;border-radius:3px;margin-top:.35rem}
-.conf.hi{background:rgba(90,170,106,.08);border:.5px solid rgba(90,170,106,.3);color:var(--green2)}
-.conf.md{background:rgba(200,146,42,.08);border:.5px solid rgba(200,146,42,.3);color:var(--gold)}
+.conf{display:inline;font-family:'IBM Plex Mono',monospace;font-size:8px !important;padding:2px 7px;border-radius:3px;margin-top:.5rem;letter-spacing:.03em;line-height:1}
+.conf.hi{background:rgba(90,170,106,.06);border:.5px solid rgba(90,170,106,.2);color:var(--green2)}
+.conf.md{background:rgba(200,146,42,.06);border:.5px solid rgba(200,146,42,.2);color:var(--gold)}
 .monbox{margin:.85rem 1.5rem;background:var(--gbg);border:.5px solid rgba(90,170,106,.2);border-radius:6px;padding:.8rem 1rem;transition:background .25s}
 .monlbl{font-family:'IBM Plex Mono',monospace;font-size:9px;color:var(--green2);letter-spacing:.14em;text-transform:uppercase;margin:0 0 .35rem;opacity:.8}
 .montxt{font-size:12px;color:var(--green3);line-height:1.7}
@@ -455,11 +455,12 @@ footer{border-top:.5px solid var(--border);padding:2rem 3.5rem;display:flex;just
     <button class="nl" id="n-how" onclick="go('how')" aria-label="How it works"><span class="nl-full">How it works</span><span class="nl-short">How</span></button>
     <button class="nl" id="n-brief" onclick="go('brief')" aria-label="Sample brief"><span class="nl-full">Sample brief</span><span class="nl-short">Brief</span></button>
     <button class="nl" id="n-pricing" onclick="go('pricing')" aria-label="Pricing">Pricing</button>
+    <button class="nl" id="n-intel" onclick="go('intel')" aria-label="Intel">Intel</button>
     <button id="theme-btn" onclick="toggleTheme()" aria-label="Toggle light mode">
       <span class="theme-icon" id="theme-icon">☀</span>
       <span id="theme-label">Light</span>
     </button>
-    <button class="ncta" onclick="go('contact')" aria-label="Get a brief">Get a brief →</button>
+    <button class="ncta" onclick="go('contact')" aria-label="Request a brief">Request brief →</button>
   </div>
 </div>
 
@@ -475,7 +476,7 @@ footer{border-top:.5px solid var(--border);padding:2rem 3.5rem;display:flex;just
     <p class="ssub">Type a company name. SignalCordon searches live DoD databases, finds the 3 fastest contract paths, verifies every signal, and delivers the exact words to send — within hours.</p>
     <div class="hi-row">
       <input class="hi" id="hero-inp" placeholder="Enter a company or technology name..." aria-label="Company name" onkeydown="if(event.key==='Enter')go('contact')">
-      <button class="btn" onclick="go('contact')" aria-label="Get brief">Get brief →</button>
+      <button class="btn" onclick="go('contact')" aria-label="Request brief">Request brief →</button>
     </div>
     <div class="proofs" role="list" aria-label="Key features">
       <div class="pi" role="listitem"><span class="pck" aria-hidden="true">✓</span>SAM.gov · SBIR · DIU · NDAA — live</div>
@@ -575,10 +576,10 @@ footer{border-top:.5px solid var(--border);padding:2rem 3.5rem;display:flex;just
       <div class="oe-title">// OUTREACH EMAIL — PATH 1 — GENERATED BY OPERATOR AGENT</div>
     </div>
     <div class="oe-body">
-      <div class="oe-field"><span class="oe-label">To:</span><span class="oe-val">Program manager · DoD Biological Technologies Office</span></div>
+      <div class="oe-field"><span class="oe-label">To:</span><span class="oe-val">Program manager · Army Aviation & Missile Command</span></div>
       <div class="oe-field"><span class="oe-label">From:</span><span class="oe-val">Founder · Autonomous Logistics Co.</span></div>
-      <div class="oe-field"><span class="oe-label">Subject:</span><span class="oe-val">SBIR DPA26BZ01-DV003 — Autonomous blood delivery past performance · pre-submission inquiry</span></div>
-      <div class="oe-text">The active SBIR topic <strong>DPA26BZ01-DV003 requiring autonomous whole blood field delivery</strong> maps directly to our AFWERX-funded prehospital blood transfusion platform — we are the only dual-use airframe in this space with validated field delivery at TRL 7 before this topic closed. I would welcome a brief pre-submission conversation before June 3 to confirm alignment with the program office's technical requirements.</div>
+      <div class="oe-field"><span class="oe-label">Subject:</span><span class="oe-val">Autonomous medical resupply — FY2026 program · past performance inquiry</span></div>
+      <div class="oe-text">Our autonomous delivery platform and <strong>prehospital medical resupply past performance at TRL 7</strong> directly match the requirements outlined in the FY2026 Army autonomous medical resupply program. We are the only dual-use airframe in this space with validated field delivery of time-sensitive medical cargo. I would welcome a conversation to discuss alignment with the program office's technical requirements and timeline.</div>
     </div>
   </div>
 
@@ -606,12 +607,24 @@ footer{border-top:.5px solid var(--border);padding:2rem 3.5rem;display:flex;just
     </table>
   </div>
 
+  <div class="ey">How we verify</div>
+  <div style="background:var(--bg2);border:.5px solid var(--border);border-radius:8px;padding:1.35rem 1.5rem;margin:0 0 2.5rem;transition:background .25s">
+    <div style="font-size:13px;color:var(--text);line-height:1.7;margin:0 0 1rem">Every brief passes through an independent Verifier agent that scores it against 5 criteria — each worth 20 points. Only briefs scoring above 70% are delivered. Scores genuinely range from 62% to 97%.</div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:8px">
+      <div style="background:var(--bg3);border:.5px solid var(--border);border-radius:5px;padding:10px 12px;transition:background .25s"><div style="font-family:'IBM Plex Mono',monospace;font-size:8px;color:var(--gold);margin:0 0 4px">01 · NAMED SOLICITATION</div><div style="font-size:11px;color:var(--t2)">Is a specific solicitation number confirmed on SAM.gov or SBIR.gov?</div></div>
+      <div style="background:var(--bg3);border:.5px solid var(--border);border-radius:5px;padding:10px 12px;transition:background .25s"><div style="font-family:'IBM Plex Mono',monospace;font-size:8px;color:var(--gold);margin:0 0 4px">02 · DOLLAR AMOUNT</div><div style="font-size:11px;color:var(--t2)">Is a specific dollar amount confirmed against budget justification or award data?</div></div>
+      <div style="background:var(--bg3);border:.5px solid var(--border);border-radius:5px;padding:10px 12px;transition:background .25s"><div style="font-family:'IBM Plex Mono',monospace;font-size:8px;color:var(--gold);margin:0 0 4px">03 · PROGRAM OFFICE</div><div style="font-size:11px;color:var(--t2)">Is a named program office with specific contracting vehicle identified?</div></div>
+      <div style="background:var(--bg3);border:.5px solid var(--border);border-radius:5px;padding:10px 12px;transition:background .25s"><div style="font-family:'IBM Plex Mono',monospace;font-size:8px;color:var(--gold);margin:0 0 4px">04 · PAST PERFORMANCE</div><div style="font-size:11px;color:var(--t2)">Does the company's past performance directly match the requirement?</div></div>
+      <div style="background:var(--bg3);border:.5px solid var(--border);border-radius:5px;padding:10px 12px;transition:background .25s"><div style="font-family:'IBM Plex Mono',monospace;font-size:8px;color:var(--gold);margin:0 0 4px">05 · TIMELINE</div><div style="font-size:11px;color:var(--t2)">Is the timeline confirmed against a live database — not estimated?</div></div>
+    </div>
+  </div>
+
   <div class="ey">Industries we cover</div>
   <div style="display:flex;flex-wrap:wrap;gap:6px;margin:0 0 2.5rem">
     <span class="tag">Autonomous systems</span><span class="tag">UAS</span><span class="tag">Robotics</span><span class="tag">Biotech</span><span class="tag">Medical devices</span><span class="tag">Advanced manufacturing</span><span class="tag">3D printing</span><span class="tag">Communications</span><span class="tag">Defense software</span><span class="tag">AI systems</span><span class="tag">Materials science</span><span class="tag">Directed energy</span><span class="tag">Logistics</span><span class="tag">Supply chain</span><span class="tag">Energy storage</span><span class="tag">Sensors</span>
   </div>
 
-  <div style="display:flex;gap:12px"><button class="btn" onclick="go('brief')">See a real brief →</button><button class="btng" onclick="go('contact')">Get your brief</button></div>
+  <div style="display:flex;gap:12px"><button class="btn" onclick="go('brief')">See a real brief →</button><button class="btng" onclick="go('contact')">Request your brief</button></div>
 </div>
 
 <!-- SAMPLE BRIEF -->
@@ -648,24 +661,27 @@ footer{border-top:.5px solid var(--border);padding:2rem 3.5rem;display:flex;just
         <div class="pdet"><div><div class="dl">Program office</div><div class="dv">DoD Biological Technologies Office</div></div><div><div class="dl">Vehicle</div><div class="dv">SBIR Phase I — direct application</div></div><div><div class="dl">Prime to approach</div><div class="dv">Program manager — direct submission</div></div><div><div class="dl">Timeline</div><div class="dv" style="color:var(--urgent)">6 months if submitted before deadline</div></div></div>
         <div class="pitch">"Our autonomous delivery platform and prehospital past performance directly match the requirements of this open SBIR topic — we are the only dual-use airframe in this space with validated delivery at TRL 7, and I would welcome a pre-submission conversation with the program manager before the deadline closes."</div>
         <div class="conf hi">// verified — topic confirmed on SBIR.gov</div>
+        <div style="font-family:'IBM Plex Mono',monospace;font-size:9px;color:var(--urgent);opacity:.7;margin-top:4px">⚠ Caveat: Phase I proposal requires detailed technical approach — feasibility only, not full prototype. Tight deadline reduces preparation time.</div>
       </div>
       <div class="pc">
         <div class="phd"><div><div class="pnum">PATH 2 — HIGHEST VALUE NEAR-TERM</div><div class="pname">Army Autonomous Medical Resupply Program</div></div><div><div class="psc">9/10</div><div class="sbar"><div class="sbf" style="width:90%;background:linear-gradient(90deg,#1a4a1a,var(--green2))"></div></div></div></div>
         <div class="pdet"><div><div class="dl">Program office</div><div class="dv">Army Aviation & Missile Command</div></div><div><div class="dl">Vehicle</div><div class="dv">SBIR rapid award vehicle</div></div><div><div class="dl">Prime to approach</div><div class="dv">Prime logistics integrator</div></div><div><div class="dl">Timeline</div><div class="dv" style="color:var(--gold)">6–9 months</div></div></div>
         <div class="pitch">"Our platform and medical delivery past performance directly match the $19M Army resupply program requirement — we are the only dual-use airframe with validated delivery at TRL 7, and I would like to discuss a candidacy for the FY2026 allocation."</div>
-        <div class="conf hi">// verified — $19M confirmed on DoD FY2026 budget justification</div>
+        <div class="conf hi">// verified — $19M confirmed in FY2026 budget</div>
+        <div style="font-family:'IBM Plex Mono',monospace;font-size:9px;color:var(--urgent);opacity:.7;margin-top:4px">⚠ Caveat: Budget allocation confirmed but solicitation not yet published. Timeline depends on contracting office release schedule.</div>
       </div>
       <div class="pc">
         <div class="phd"><div><div class="pnum">PATH 3 — STRATEGIC LONG-TERM</div><div class="pname">Naval Air Systems — Successor Airframe Program</div></div><div><div class="psc">8/10</div><div class="sbar"><div class="sbf" style="width:80%;background:linear-gradient(90deg,#1a4a1a,var(--green2))"></div></div></div></div>
         <div class="pdet"><div><div class="dl">Program office</div><div class="dv">Naval Air Systems Command</div></div><div><div class="dl">Vehicle</div><div class="dv">Sources Sought → RFP</div></div><div><div class="dl">Prime to approach</div><div class="dv">Incumbent prime or direct</div></div><div><div class="dl">Timeline</div><div class="dv" style="color:var(--gold)">12–18 months</div></div></div>
         <div class="pitch">"Following confirmation that both incumbent airframes failed demonstration tasks, our independently actuated platform — field-validated, TRL 7, domestically manufactured — addresses the specific agility gap the program office has publicly identified."</div>
         <div class="conf md">// confirmed — Sources Sought verified on SAM.gov</div>
+        <div style="font-family:'IBM Plex Mono',monospace;font-size:9px;color:var(--urgent);opacity:.7;margin-top:4px">⚠ Caveat: Sources Sought is market research, not a solicitation. Formal RFP timeline is uncertain and could extend beyond 18 months.</div>
       </div>
     </div>
     <div class="monbox"><div class="monlbl">Monday morning action</div><div class="montxt">Contact your existing program office relationship and request a warm introduction to Army Aviation command. Simultaneously begin SBIR pre-submission outreach. The active deadline does not move.</div></div>
     <div class="bftr"><div style="font-family:'IBM Plex Mono',monospace;font-size:9px;color:var(--t3)">SC-SAMPLE-001 // Illustrative // UNCLASSIFIED</div><div class="vbdg">88% verified · 3 outreach messages included</div></div>
   </div>
-  <div style="display:flex;gap:12px"><button class="btn" onclick="go('contact')">Get a brief for your company →</button><button class="btng" onclick="go('pricing')">View pricing</button></div>
+  <div style="margin-top:2rem;display:flex;gap:12px;justify-content:center"><button class="btn" onclick="go('contact')" style="font-size:13px;padding:14px 28px">Request a brief for your company →</button><button class="btng" onclick="go('pricing')">View pricing</button></div>
 </div>
 
 <!-- PRICING -->
@@ -689,22 +705,22 @@ footer{border-top:.5px solid var(--border);padding:2rem 3.5rem;display:flex;just
         <li><span class="fck y" aria-hidden="true">✓</span>3 outreach messages included</li>
         <li><span class="fck y" aria-hidden="true">✓</span>PDF delivery</li>
       </ul>
-      <button class="pbtn" onclick="go('contact')" aria-label="Get verified brief for $750">Get verified brief →</button>
+      <button class="pbtn" onclick="go('contact')" aria-label="Request verified brief for $750">Request verified brief →</button>
     </div>
     <div class="pcrd feat">
-      <span class="pbdg" style="background:rgba(200,146,42,.12);color:var(--gold);border:.5px solid rgba(200,146,42,.3)">Most popular</span>
-      <div class="pnm">Brief + Agreement</div>
-      <div class="pamt">$1,250</div>
-      <div class="pper">brief + success fee agreement</div>
-      <div class="pdesc">Everything in the verified brief plus a success fee agreement. We have skin in the game alongside you.</div>
-      <ul class="pfeats" aria-label="Brief and agreement features">
+      <span class="pbdg" style="background:rgba(200,146,42,.12);color:var(--gold);border:.5px solid rgba(200,146,42,.3)">Flexible</span>
+      <div class="pnm">Custom engagement</div>
+      <div class="pamt" style="font-size:22px">Custom</div>
+      <div class="pper">tailored to your company's needs</div>
+      <div class="pdesc">For companies requiring ongoing support, multiple briefs, or integration with your existing BD workflow. Structured around your timeline and priorities.</div>
+      <ul class="pfeats" aria-label="Custom engagement features">
         <li><span class="fck y" aria-hidden="true">✓</span>Everything in verified brief</li>
-        <li><span class="fck y" aria-hidden="true">✓</span>1.5% of first DoD contract value</li>
-        <li><span class="fck y" aria-hidden="true">✓</span>$500 advance credited against fee</li>
-        <li><span class="fck y" aria-hidden="true">✓</span>18-month window</li>
+        <li><span class="fck y" aria-hidden="true">✓</span>Volume pricing for multiple briefs</li>
         <li><span class="fck y" aria-hidden="true">✓</span>Ongoing signal monitoring</li>
+        <li><span class="fck y" aria-hidden="true">✓</span>Dedicated support</li>
+        <li><span class="fck y" aria-hidden="true">✓</span>Flexible terms</li>
       </ul>
-      <button class="pbtn" onclick="go('contact')" aria-label="Get brief and agreement for $1,250">Get brief + agreement →</button>
+      <button class="pbtn" onclick="go('contact')" aria-label="Contact us for custom engagement">Contact us →</button>
     </div>
     <div class="pcrd">
       <span class="pbdg" style="background:rgba(128,128,128,.08);border:.5px solid var(--border);color:var(--t3)">Ongoing</span>
@@ -723,23 +739,9 @@ footer{border-top:.5px solid var(--border);padding:2rem 3.5rem;display:flex;just
     </div>
   </div>
 
-  <div style="background:var(--bg2);border:.5px solid var(--border);border-radius:8px;padding:1.35rem 1.5rem;display:flex;gap:1.5rem;align-items:flex-start;flex-wrap:wrap;margin:0 0 2.5rem;transition:background .25s">
-    <div style="flex:1;min-width:220px">
-      <div style="font-family:'IBM Plex Mono',monospace;font-size:9px;color:var(--gold);letter-spacing:.12em;margin:0 0 .45rem;opacity:.8">HOW THE SUCCESS FEE WORKS</div>
-      <div style="font-family:'Syne',sans-serif;font-size:16px;font-weight:700;color:var(--text);margin:0 0 .35rem;letter-spacing:-.02em">We only win when you win</div>
-      <div style="font-size:12px;color:var(--t2);line-height:1.65">Pay a $500 advance at signing — credited against your first success fee payment. If you win a DoD contract from a path we identified, we receive 1.5% of that contract value. 18-month window. Non-refundable advance if no contract results.</div>
-    </div>
-    <div style="background:var(--bg3);border:.5px solid var(--border);border-radius:6px;padding:1rem;min-width:185px;transition:background .25s">
-      <div style="font-family:'IBM Plex Mono',monospace;font-size:9px;color:var(--t3);margin:0 0 .4rem">Example payout</div>
-      <div style="font-size:12px;color:var(--t2);margin:0 0 3px">$500K SBIR Phase II →</div>
-      <div style="font-family:'Syne',sans-serif;font-size:20px;font-weight:800;color:var(--green2);letter-spacing:-.02em">$7,000 net</div>
-      <div style="font-size:11px;color:var(--t3);margin-top:2px">$7,500 fee minus $500 advance</div>
-    </div>
-  </div>
-
   <div class="ey">Frequently asked questions</div>
   <div class="faq" role="list">
-    <div class="faq-item" role="listitem"><div class="faq-q" onclick="toggleFaq(this)" aria-expanded="false">What if the brief doesn't lead to a contract?<span class="faq-icon" aria-hidden="true">+</span></div><div class="faq-a">The brief delivers verified intelligence and ready-to-send outreach — the result depends on your follow-through and technology fit. We do not guarantee contract awards. If you add the success fee agreement, the $500 advance is non-refundable, but no further fee is owed unless a contract results from a path we identified.</div></div>
+    <div class="faq-item" role="listitem"><div class="faq-q" onclick="toggleFaq(this)" aria-expanded="false">What if the brief doesn't lead to a contract?<span class="faq-icon" aria-hidden="true">+</span></div><div class="faq-a">The brief delivers verified intelligence and ready-to-send outreach — the result depends on your follow-through and technology fit. We do not guarantee contract awards. The brief identifies the most viable paths and gives you specific, actionable next steps.</div></div>
     <div class="faq-item" role="listitem"><div class="faq-q" onclick="toggleFaq(this)" aria-expanded="false">What industries do you cover?<span class="faq-icon" aria-hidden="true">+</span></div><div class="faq-a">Any company with dual-use technology relevant to DoD priorities. We cover autonomous systems, biotech, advanced manufacturing, audio and communications, defense software, materials science, directed energy, and supply chain logistics. If your technology solves a real problem, we can find the DoD path to it.</div></div>
     <div class="faq-item" role="listitem"><div class="faq-q" onclick="toggleFaq(this)" aria-expanded="false">Can I request focus on a specific program office or vehicle?<span class="faq-icon" aria-hidden="true">+</span></div><div class="faq-a">Yes. Use the optional notes field in the request form to specify priorities — SOCOM, AFWERX, DIU, a specific SBIR track, or a named program office. We factor your guidance into the brief without limiting the search to only what you specify.</div></div>
     <div class="faq-item" role="listitem"><div class="faq-q" onclick="toggleFaq(this)" aria-expanded="false">How is this different from searching SAM.gov myself?<span class="faq-icon" aria-hidden="true">+</span></div><div class="faq-a">SAM.gov shows you what is posted. SignalCordon finds the connection between what you do and what is posted — then verifies it, ranks it by fit and timeline, and writes the outreach. The gap between "there is a solicitation" and "here is the path, the person to contact, and the exact words to use" is what SignalCordon closes.</div></div>
@@ -755,12 +757,47 @@ footer{border-top:.5px solid var(--border);padding:2rem 3.5rem;display:flex;just
   </div>
 </div>
 
+<!-- INTEL -->
+<div id="pg-intel" class="pg">
+  <div class="ey">Intel</div>
+  <h2 class="stitle">Defense BD resources</h2>
+  <p class="ssub">Free intelligence resources for dual-use companies navigating defense procurement. No pitch — just actionable information.</p>
+
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px;margin:2rem 0">
+    <div style="background:var(--bg2);border:.5px solid var(--border);border-radius:8px;padding:1.5rem;transition:background .25s">
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:8px;color:var(--gold);letter-spacing:.12em;margin:0 0 .5rem">SC-GUIDE-001 // UNCLASSIFIED</div>
+      <div style="font-family:'Syne',sans-serif;font-size:16px;font-weight:700;color:var(--text);margin:0 0 .35rem;letter-spacing:-.02em">How to Find Your First DoD Contract</div>
+      <div style="font-size:12px;color:var(--t2);line-height:1.65;margin:0 0 1rem">A practical guide covering SAM.gov, SBIR/STTR, Sources Sought, OTAs, NDAA budget lines, program offices, and outreach strategy. Written for founders with no defense background.</div>
+      <div style="display:flex;gap:8px;flex-wrap:wrap;margin:0 0 1rem"><span class="tag">6 pages</span><span class="tag">10 sections</span><span class="tag">Vehicle comparison table</span></div>
+      <a href="/signalcordon_guide.pdf" target="_blank" class="btn" style="display:inline-block;text-decoration:none;text-align:center;font-size:12px;padding:10px 20px">Download PDF →</a>
+    </div>
+
+    <div style="background:var(--bg2);border:.5px solid var(--border);border-radius:8px;padding:1.5rem;opacity:.5;transition:background .25s">
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:8px;color:var(--t3);letter-spacing:.12em;margin:0 0 .5rem">COMING SOON</div>
+      <div style="font-family:'Syne',sans-serif;font-size:16px;font-weight:700;color:var(--t2);margin:0 0 .35rem;letter-spacing:-.02em">Q2 2026 Market Signal Report</div>
+      <div style="font-size:12px;color:var(--t3);line-height:1.65;margin:0 0 1rem">Sector-specific analysis of open solicitations, Sources Sought activity, recent awards, and spending trends across DoD program offices. Data from SAM.gov, SBIR.gov, and USASpending.gov.</div>
+      <div style="display:flex;gap:8px;flex-wrap:wrap"><span class="tag" style="opacity:.6">Market data</span><span class="tag" style="opacity:.6">Sector analysis</span><span class="tag" style="opacity:.6">Spending trends</span></div>
+    </div>
+  </div>
+
+  <div class="capture" style="margin-top:2rem">
+    <div class="cap-body">
+      <div class="cap-title">Signal of the Week</div>
+      <div class="cap-sub">One specific DoD finding every Monday. Subscribe to receive new intel resources and signal reports as they publish.</div>
+    </div>
+    <div class="cap-form">
+      <input class="cap-inp" type="email" placeholder="your@email.com" id="cap-email-intel" aria-label="Email for intel updates">
+      <button class="cap-btn" onclick="capsubmIntel()">Subscribe</button>
+    </div>
+  </div>
+</div>
+
 <!-- CONTACT -->
 <!-- SIGINT INTERCEPT 7/7 — TRANSMISSION COMPLETE — GOLF CONFIRMED — END OF MESSAGE -->
 <div id="pg-contact" class="pg" style="position:relative">
   <span class="sc-glyph" style="top:80px;left:50%;transform:translateX(-50%)" aria-label="intercept golf: signal confirmed — cordon established">ALWAYS</span>
-  <div class="ey">Get started</div>
-  <h2 class="stitle">Get your brief</h2>
+  <div class="ey">Start here</div>
+  <h2 class="stitle">Request your brief</h2>
   <p class="ssub">Enter a company name. We analyze it and deliver your verified brief — with 3 outreach messages — within hours.</p>
   <div class="cwrap">
     <div class="cform">
@@ -777,8 +814,8 @@ footer{border-top:.5px solid var(--border);padding:2rem 3.5rem;display:flex;just
           <label class="fl" for="tier-sel">Select a tier</label>
           <select class="fi" id="tier-sel" name="tier">
             <option>Verified brief — $750</option>
-            <option>Brief + success fee agreement — $1,250</option>
             <option>Monthly retainer — $3,000/month</option>
+            <option>Custom engagement</option>
             <option>Enterprise or volume inquiry</option>
           </select>
         </div>
@@ -787,7 +824,6 @@ footer{border-top:.5px solid var(--border);padding:2rem 3.5rem;display:flex;just
           <textarea class="fi" id="notes-inp" name="notes" rows="3" placeholder="e.g. Focus on SOCOM paths, we have a deadline in 60 days, we already have an AFWERX relationship..."></textarea>
         </div>
         <input type="hidden" name="_subject" value="New SignalCordon Brief Request">
-        <input type="hidden" name="_next" value="https://www.signalcordon.com">
         <button type="submit" class="btn" style="width:100%;padding:14px;font-size:13px;letter-spacing:.06em" aria-label="Submit brief request">Submit request →</button>
       </form>
     </div>
@@ -828,9 +864,24 @@ footer{border-top:.5px solid var(--border);padding:2rem 3.5rem;display:flex;just
 
 <footer role="contentinfo" style="position:relative">
   <div class="ft-binary" aria-hidden="true">11111101010</div>
-  <div class="ft">SignalCordon LLC // Unclassified defense BD intelligence<br>Founded 2026 · All briefs unclassified</div>
+  <div class="ft">SignalCordon LLC // Unclassified defense BD intelligence<br>Founded 2026 · All briefs unclassified · <a href="javascript:void(0)" onclick="document.getElementById('privacy-modal').style.display='flex'" style="color:var(--t3);text-decoration:underline;cursor:pointer">Privacy</a></div>
   <div class="ft" style="text-align:right">No clearance required<br>UC Berkeley · Defense BD Intelligence</div>
 </footer>
+
+<!-- Privacy modal -->
+<div id="privacy-modal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.7);z-index:10002;align-items:center;justify-content:center;padding:2rem" onclick="if(event.target===this)this.style.display='none'">
+  <div style="background:var(--bg2);border:.5px solid var(--border);border-radius:10px;padding:2rem;max-width:560px;width:100%;max-height:80vh;overflow-y:auto;color:var(--text)">
+    <div style="font-family:'Syne',sans-serif;font-size:18px;font-weight:700;margin:0 0 1rem">Privacy Policy</div>
+    <div style="font-size:12px;color:var(--t2);line-height:1.7">
+      <p style="margin:0 0 .8rem">SignalCordon LLC collects email addresses through our newsletter subscription form and contact form. We use this information solely to deliver our Signal of the Week newsletter and to respond to brief requests.</p>
+      <p style="margin:0 0 .8rem">We do not sell, share, or distribute your email address to third parties. Email addresses are stored securely through Beehiiv (newsletter) and Formspree (contact form).</p>
+      <p style="margin:0 0 .8rem">We use Google Analytics (GA4) to understand how visitors interact with our website. This data is anonymized and used only to improve our service.</p>
+      <p style="margin:0 0 .8rem">You may unsubscribe from our newsletter at any time using the link in every email. To request deletion of your data, contact emmett@signalcordon.com.</p>
+      <p style="margin:0">Last updated: May 2026</p>
+    </div>
+    <button onclick="this.parentElement.parentElement.style.display='none'" style="margin-top:1rem;background:var(--bg3);border:.5px solid var(--border);color:var(--t2);padding:8px 16px;border-radius:4px;cursor:pointer;font-family:'IBM Plex Mono',monospace;font-size:10px">Close</button>
+  </div>
+</div>
 
 <!-- Esoteric overlays -->
 <div class="sc-flash" id="sc-flash" aria-hidden="true"></div>
@@ -838,10 +889,9 @@ footer{border-top:.5px solid var(--border);padding:2rem 3.5rem;display:flex;just
 <div class="sc-class-bar" id="sc-cb" aria-hidden="true">CLASSIFICATION: UNCLASSIFIED // SIGNALCORDON</div>
 
 <script>
-const PAGES=['home','how','brief','pricing','contact'];
+const PAGES=['home','how','brief','pricing','intel','contact'];
 
 // ◇
-console.log('%c⌐                                          ¬\n   SIGNALCORDON // UNCLASSIFIED\n   Find the signal. Draw the line.\n   33 · φ · 7 · 51.4° · 1:2:16\n└                                          ┘','color:#c8922a;font-family:monospace;font-size:11px;line-height:1.6');
 const PHI=1.6180339887;
 const ARM=33;
 const HEPT=360/7;
@@ -860,6 +910,15 @@ function go(id){
   if(t)t.classList.add('on');
   if(nb)nb.classList.add('on');
   window.scrollTo(0,0);
+  // Update page title
+  const titles={home:'SignalCordon — DoD Contract Intelligence for Dual-Use Companies',how:'How It Works — SignalCordon',brief:'Sample Brief — SignalCordon',pricing:'Pricing — SignalCordon',intel:'Intel — SignalCordon',contact:'Request a Brief — SignalCordon'};
+  document.title=titles[id]||titles.home;
+  // Transfer hero input to contact form
+  if(id==='contact'){
+    const hi=document.getElementById('hero-inp');
+    const ci=document.getElementById('company-inp');
+    if(hi&&ci&&hi.value&&!ci.value)ci.value=hi.value;
+  }
   if(typeof gtag!=='undefined')gtag('event','page_view',{page_title:id,page_location:window.location.href+'#'+id});
 }
 
@@ -920,6 +979,35 @@ async function capsubm(){
   }
 }
 
+async function capsubmIntel(){
+  const inp=document.getElementById('cap-email-intel');
+  const btn=inp.parentElement.querySelector('.cap-btn');
+  if(!inp||!inp.value||!inp.value.includes('@'))return;
+  btn.textContent='Sending...';
+  btn.disabled=true;
+  try{
+    const res=await fetch('/api/subscribe',{
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({email:inp.value})
+    });
+    if(res.ok){
+      btn.textContent='Subscribed ✓';
+      btn.style.background='#3a7a4a';
+      inp.disabled=true;
+      if(typeof gtag!=='undefined')gtag('event','newsletter_subscribe',{event_category:'engagement',event_label:'intel_page'});
+    } else {
+      btn.textContent='Try again';
+      btn.style.background='var(--urgent)';
+      btn.disabled=false;
+    }
+  }catch(e){
+    btn.textContent='Try again';
+    btn.style.background='var(--urgent)';
+    btn.disabled=false;
+  }
+}
+
 async function submitBrief(e){
   e.preventDefault();
   const form=document.getElementById('brief-form');
@@ -963,6 +1051,14 @@ function toggleFaq(el){
     el.setAttribute('aria-expanded','true');
   }
 }
+
+// Escape key closes privacy modal
+document.addEventListener('keydown',function(e){
+  if(e.key==='Escape'){
+    const m=document.getElementById('privacy-modal');
+    if(m&&m.style.display==='flex')m.style.display='none';
+  }
+});
 
 // === ESOTERIC LAYER ===
 
